@@ -102,5 +102,20 @@ def agent_turn(message, ctx):
         return {"reply": "Am o problemă tehnică acum. Încearcă din nou în câteva secunde."}
 
 
+def find_branches(locatie):
+    """Sucursale reale (OpenStreetMap) lângă locația dată. Cu USE_MOCK=1 -> sucursala de exemplu."""
+    if os.getenv("USE_MOCK") == "1":
+        b = dict(mock.find_branch(), distance="exemplu")
+        return {"locatie": {"text": locatie, "gasit": locatie}, "sucursale": [b]}
+    try:
+        from branches import find_nearest
+        return find_nearest(locatie)
+    except Exception as e:
+        print(f"[backend] căutarea sucursalelor a eșuat: {e!r}")
+        return {"eroare": "fara_conexiune", "mesaj": "Nu pot căuta sucursalele acum. Le găsești pe raiffeisen.ro sau la *2000."}
+
+
 def find_branch():
-    return mock.find_branch()
+    """Pentru PDF, când încă nu s-a căutat nicio sucursală."""
+    return {"name": "Cea mai apropiată sucursală Raiffeisen", "address": "o găsești în aplicație (cardul „Unde mergi”)",
+            "hours": "programul pe raiffeisen.ro sau la *2000", "distance": "", "booking_url": "https://www.raiffeisen.ro/"}
