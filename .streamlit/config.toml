@@ -1,0 +1,10 @@
+# Tema aplicației: mereu luminoasă, în culorile Raiffeisen (indiferent de tema telefonului / laptopului)
+[theme]
+base = "light"
+primaryColor = "#1C161C"
+backgroundColor = "#F4F4F2"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#1C161C"
+
+[client]
+toolbarMode = "minimal"

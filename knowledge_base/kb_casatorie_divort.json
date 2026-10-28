@@ -4,48 +4,135 @@
   "versiune": "0.1",
   "status_verificare": "Bazat pe informații publice; lista finală poate diferi de la caz la caz și trebuie confirmată la sucursală.",
   "cuvinte_cheie": [
-    "m-am căsătorit", "căsătorie", "nuntă", "mi-am schimbat numele", "nume nou",
-    "buletin nou", "divorț", "am divorțat", "sentință", "fostul soț", "fosta soție",
-    "cont comun", "credit comun", "nume de fată"
+    "m-am căsătorit",
+    "căsătorie",
+    "nuntă",
+    "mi-am schimbat numele",
+    "nume nou",
+    "buletin nou",
+    "divorț",
+    "am divorțat",
+    "sentință",
+    "fostul soț",
+    "fosta soție",
+    "cont comun",
+    "credit comun",
+    "nume de fată"
   ],
   "ton": {
     "stil": "prietenos și neutru; la divorț, discret și fără judecăți",
     "deschidere_recomandata_casatorie": "Felicitări! Te ajut să actualizezi datele la bancă dintr-o singură vizită.",
     "deschidere_recomandata_divort": "Înțeleg că e o perioadă încărcată. Hai să vedem pas cu pas ce trebuie actualizat la bancă.",
-    "de_evitat": ["întrebări despre motivele divorțului", "sfaturi juridice despre partaj", "promisiuni despre credite"]
+    "de_evitat": [
+      "întrebări despre motivele divorțului",
+      "sfaturi juridice despre partaj",
+      "promisiuni despre credite"
+    ]
   },
   "intrebari_de_clarificare": [
-    {"id": "eveniment", "intrebare": "E vorba de o căsătorie sau de un divorț?", "optiuni": ["casatorie", "divort"]},
-    {"id": "nume_schimbat", "intrebare": "Ți s-a schimbat numele și ai deja buletinul nou?", "optiuni": ["da_am_buletin_nou", "nume_schimbat_fara_buletin_nou", "nu_s-a_schimbat_numele"]},
-    {"id": "produse_comune", "intrebare": "Ai cu fostul/actualul partener conturi sau credite comune la bancă?", "optiuni": ["da", "nu", "nu_stiu"]}
+    {
+      "id": "eveniment",
+      "intrebare": "E vorba de o căsătorie sau de un divorț?",
+      "optiuni": [
+        "casatorie",
+        "divort"
+      ]
+    },
+    {
+      "id": "nume_schimbat",
+      "intrebare": "Ți s-a schimbat numele și ai deja buletinul nou?",
+      "optiuni": [
+        "da_am_buletin_nou",
+        "nume_schimbat_fara_buletin_nou",
+        "nu_s-a_schimbat_numele"
+      ]
+    },
+    {
+      "id": "produse_comune",
+      "intrebare": "Ai cu fostul/actualul partener conturi sau credite comune la bancă?",
+      "optiuni": [
+        "da",
+        "nu",
+        "nu_stiu"
+      ]
+    }
   ],
   "scenarii": [
     {
       "id": "actualizare_nume_casatorie",
       "descriere": "Clientul și-a schimbat numele după căsătorie și vrea să actualizeze datele la bancă.",
-      "acte_necesare": ["act_identitate_nou", "certificat_casatorie"],
+      "acte_necesare": [
+        "act_identitate_nou",
+        "certificat_casatorie"
+      ],
       "acte_optionale": [],
-      "conditii": ["Buletinul trebuie schimbat întâi la Evidența Persoanelor; banca actualizează datele pe baza buletinului nou."],
-      "mesaj_client": "Mai întâi îți schimbi buletinul, apoi vii la bancă cu buletinul nou și certificatul de căsătorie."
+      "conditii": [
+        "Buletinul trebuie schimbat întâi la Evidența Persoanelor; banca actualizează datele pe baza buletinului nou."
+      ],
+      "mesaj_client": "Mai întâi îți schimbi buletinul, apoi vii la bancă cu buletinul nou și certificatul de căsătorie.",
+      "procedura_raiffeisen": {
+        "titlu": "Actualizarea numelui după căsătorie",
+        "pasi": [
+          "Îți schimbi întâi buletinul pe noul nume, la Evidența Persoanelor.",
+          "Vii la orice sucursală Raiffeisen Bank cu buletinul nou și certificatul de căsătorie.",
+          "Consilierul actualizează numele și starea civilă pe toate produsele tale (conturi, carduri, credite, economii).",
+          "Dacă ai carduri, se emit carduri noi pe numele actualizat; cele vechi se închid când le primești pe cele noi."
+        ],
+        "durata": "actualizarea se face pe loc, în aproximativ 20 de minute; cardurile noi ajung în 5–7 zile lucrătoare",
+        "important": "Banca actualizează datele după buletin, deci buletinul nou trebuie să fie primul pas.",
+        "status": "model propus de echipă pentru hackathon (pași generali din surse publice; durate și detalii interne de confirmat cu banca)"
+      }
     },
     {
       "id": "actualizare_dupa_divort",
       "descriere": "Clientul a divorțat și vrea să actualizeze datele (eventual revenire la numele anterior).",
-      "acte_necesare": ["act_identitate_nou", "certificat_sau_sentinta_divort"],
+      "acte_necesare": [
+        "act_identitate_nou",
+        "certificat_sau_sentinta_divort"
+      ],
       "acte_optionale": [],
       "conditii": [
         "Hotărârea de divorț trebuie să fie definitivă.",
         "Dacă numele nu s-a schimbat, buletinul actual valabil este suficient ca act de identitate."
       ],
-      "mesaj_client": "Ia cu tine buletinul și certificatul de divorț sau sentința definitivă."
+      "mesaj_client": "Ia cu tine buletinul și certificatul de divorț sau sentința definitivă.",
+      "procedura_raiffeisen": {
+        "titlu": "Actualizarea datelor după divorț",
+        "pasi": [
+          "Dacă revii la numele anterior, îți schimbi întâi buletinul.",
+          "Vii la sucursală cu buletinul (nou) și certificatul de divorț sau sentința de divorț definitivă.",
+          "Consilierul actualizează starea civilă și, dacă e cazul, numele pe toate produsele.",
+          "Se emit carduri noi dacă s-a schimbat numele."
+        ],
+        "durata": "pe loc, în aproximativ 20 de minute",
+        "important": "Sentința trebuie să fie definitivă; o sentință care încă poate fi atacată nu este acceptată.",
+        "status": "model propus de echipă pentru hackathon (pași generali din surse publice; durate și detalii interne de confirmat cu banca)"
+      }
     },
     {
       "id": "produse_comune_dupa_divort",
       "descriere": "Clientul are conturi sau credite comune cu fostul partener.",
-      "acte_necesare": ["act_identitate_nou", "certificat_sau_sentinta_divort"],
+      "acte_necesare": [
+        "act_identitate_nou",
+        "certificat_sau_sentinta_divort"
+      ],
       "acte_optionale": [],
-      "conditii": ["Modificările la credite sau conturi comune se discută cu consilierul; agentul doar pregătește actele."],
-      "mesaj_client": "Pentru conturi sau credite comune, decizia o ia banca împreună cu voi. Te pot ajuta să vii cu actele pregătite."
+      "conditii": [
+        "Modificările la credite sau conturi comune se discută cu consilierul; agentul doar pregătește actele."
+      ],
+      "mesaj_client": "Pentru conturi sau credite comune, decizia o ia banca împreună cu voi. Te pot ajuta să vii cu actele pregătite.",
+      "procedura_raiffeisen": {
+        "titlu": "Conturi și credite comune după divorț",
+        "pasi": [
+          "Vii la sucursală cu actul de identitate și sentința definitivă de divorț (cu partajul, dacă există).",
+          "Consilierul îți arată produsele comune: conturi cu doi titulari, credite cu codebitor, carduri suplimentare.",
+          "Pentru un cont comun, se poate închide sau trece pe un singur titular, cu acordul ambilor foști soți.",
+          "Pentru un credit comun, scoaterea unui codebitor presupune o nouă analiză de creditare pentru cel care rămâne."
+        ],
+        "durata": "conturile, pe loc; modificarea unui credit durează de regulă 5–10 zile lucrătoare (analiză de credit)",
+        "important": "Divorțul nu schimbă singur contractul de credit: ambii rămân obligați până la aprobarea băncii.",
+        "status": "model propus de echipă pentru hackathon (pași generali din surse publice; durate și detalii interne de confirmat cu banca)"
+      }
     }
   ],
   "acte": [
@@ -54,10 +141,26 @@
       "nume": "Carte de identitate (cu numele actual)",
       "emitent": "SPCLEP / MAI",
       "format_cerut": "original",
-      "campuri_cheie": ["nume", "prenume", "cnp", "serie", "numar", "data_emiterii", "data_expirarii"],
+      "campuri_cheie": [
+        "nume",
+        "prenume",
+        "cnp",
+        "serie",
+        "numar",
+        "data_emiterii",
+        "data_expirarii"
+      ],
       "reguli_validare": [
-        {"id": "cnp_valid", "camp": "cnp", "descriere": "CNP valid (cifra de control)"},
-        {"id": "neexpirat", "camp": "data_expirarii", "descriere": "Actul nu este expirat la data vizitei"}
+        {
+          "id": "cnp_valid",
+          "camp": "cnp",
+          "descriere": "CNP valid (cifra de control)"
+        },
+        {
+          "id": "neexpirat",
+          "camp": "data_expirarii",
+          "descriere": "Actul nu este expirat la data vizitei"
+        }
       ]
     },
     {
@@ -65,10 +168,26 @@
       "nume": "Certificat de căsătorie",
       "emitent": "Primărie / Serviciul de stare civilă",
       "format_cerut": "original",
-      "campuri_cheie": ["sot_nume_inainte", "sot_nume_dupa", "sot_cnp", "sotie_nume_inainte", "sotie_nume_dupa", "sotie_cnp", "data_casatoriei", "serie_numar_certificat"],
+      "campuri_cheie": [
+        "sot_nume_inainte",
+        "sot_nume_dupa",
+        "sot_cnp",
+        "sotie_nume_inainte",
+        "sotie_nume_dupa",
+        "sotie_cnp",
+        "data_casatoriei",
+        "serie_numar_certificat"
+      ],
       "reguli_validare": [
-        {"id": "cnp_valid", "camp": "sot_cnp,sotie_cnp", "descriere": "CNP-urile soților sunt valide"},
-        {"id": "campuri_complete", "descriere": "Numele înainte și după căsătorie, CNP-urile și data căsătoriei sunt prezente"}
+        {
+          "id": "cnp_valid",
+          "camp": "sot_cnp,sotie_cnp",
+          "descriere": "CNP-urile soților sunt valide"
+        },
+        {
+          "id": "campuri_complete",
+          "descriere": "Numele înainte și după căsătorie, CNP-urile și data căsătoriei sunt prezente"
+        }
       ]
     },
     {
@@ -76,18 +195,49 @@
       "nume": "Certificat de divorț sau sentință de divorț definitivă",
       "emitent": "Primărie / notar / instanță",
       "format_cerut": "original sau copie legalizată",
-      "campuri_cheie": ["nume_fost_sot", "cnp_fost_sot", "nume_fosta_sotie", "cnp_fosta_sotie", "nume_purtat_dupa_divort", "data", "emitent", "mentiune_definitiva"],
+      "campuri_cheie": [
+        "nume_fost_sot",
+        "cnp_fost_sot",
+        "nume_fosta_sotie",
+        "cnp_fosta_sotie",
+        "nume_purtat_dupa_divort",
+        "data",
+        "emitent",
+        "mentiune_definitiva"
+      ],
       "reguli_validare": [
-        {"id": "hotarare_definitiva", "descriere": "Dacă e sentință, are mențiunea că este definitivă"},
-        {"id": "semnat_stampilat", "descriere": "Are semnătura și ștampila emitentului"}
+        {
+          "id": "hotarare_definitiva",
+          "descriere": "Dacă e sentință, are mențiunea că este definitivă"
+        },
+        {
+          "id": "semnat_stampilat",
+          "descriere": "Are semnătura și ștampila emitentului"
+        }
       ]
     }
   ],
   "crosscheck": [
-    {"id": "aceeasi_persoana_cnp", "descriere": "CNP-ul de pe buletin coincide cu CNP-ul clientului din certificatul de căsătorie / divorț", "severitate_daca_esueaza": "eroare"},
-    {"id": "nume_dupa_casatorie", "descriere": "Numele de pe buletinul nou este numele de după căsătorie din certificat", "severitate_daca_esueaza": "eroare"},
-    {"id": "nume_dupa_divort", "descriere": "Numele de pe buletin corespunde numelui purtat după divorț, menționat în certificat/sentință", "severitate_daca_esueaza": "avertisment"},
-    {"id": "buletin_dupa_eveniment", "descriere": "Buletinul nou este emis după data căsătoriei/divorțului (dacă numele s-a schimbat)", "severitate_daca_esueaza": "avertisment"}
+    {
+      "id": "aceeasi_persoana_cnp",
+      "descriere": "CNP-ul de pe buletin coincide cu CNP-ul clientului din certificatul de căsătorie / divorț",
+      "severitate_daca_esueaza": "eroare"
+    },
+    {
+      "id": "nume_dupa_casatorie",
+      "descriere": "Numele de pe buletinul nou este numele de după căsătorie din certificat",
+      "severitate_daca_esueaza": "eroare"
+    },
+    {
+      "id": "nume_dupa_divort",
+      "descriere": "Numele de pe buletin corespunde numelui purtat după divorț, menționat în certificat/sentință",
+      "severitate_daca_esueaza": "avertisment"
+    },
+    {
+      "id": "buletin_dupa_eveniment",
+      "descriere": "Buletinul nou este emis după data căsătoriei/divorțului (dacă numele s-a schimbat)",
+      "severitate_daca_esueaza": "avertisment"
+    }
   ],
   "pasi": [
     "Dacă ți s-a schimbat numele, îți schimbi întâi buletinul la Evidența Persoanelor.",
@@ -102,9 +252,18 @@
     "La divorț, sentința trebuie să fie definitivă, altfel nu poate fi folosită."
   ],
   "faq": [
-    {"intrebare": "Pot actualiza numele la bancă înainte să am buletinul nou?", "raspuns": "De regulă nu. Banca se uită la actul de identitate, așa că e bine să ai întâi buletinul nou."},
-    {"intrebare": "Ce se întâmplă cu creditul comun după divorț?", "raspuns": "Asta decide banca împreună cu voi doi. Eu te pot ajuta doar să vii cu actele pregătite; detaliile le discuți cu consilierul."},
-    {"intrebare": "Trebuie să-mi schimb numele după căsătorie?", "raspuns": "Nu e obligatoriu, e alegerea ta. Dacă păstrezi numele, la bancă nu ai nimic de schimbat."}
+    {
+      "intrebare": "Pot actualiza numele la bancă înainte să am buletinul nou?",
+      "raspuns": "De regulă nu. Banca se uită la actul de identitate, așa că e bine să ai întâi buletinul nou."
+    },
+    {
+      "intrebare": "Ce se întâmplă cu creditul comun după divorț?",
+      "raspuns": "Asta decide banca împreună cu voi doi. Eu te pot ajuta doar să vii cu actele pregătite; detaliile le discuți cu consilierul."
+    },
+    {
+      "intrebare": "Trebuie să-mi schimb numele după căsătorie?",
+      "raspuns": "Nu e obligatoriu, e alegerea ta. Dacă păstrezi numele, la bancă nu ai nimic de schimbat."
+    }
   ],
   "trimite_la_consilier_cand": [
     "există credite, garanții sau conturi comune",
@@ -114,7 +273,13 @@
     "întrebarea nu are răspuns în această bază de cunoștințe"
   ],
   "surse": [
-    {"titlu": "Observator – Schimbarea numelui după căsătorie sau divorț", "url": "https://observatornews.ro/social/schimbarea-numelui-dupa-casatorie-sau-divort-ce-acte-se-schimba-si-in-ce-ordine-650639.html"},
-    {"titlu": "Primăria Tîrgșoru Vechi – Acte pentru buletin (certificat/hotărâre de divorț definitivă)", "url": "https://comunatirgsoruvechi.ro/images/fisiere/evid-pers-st-civ/evid-pers/acte/schimb-domiciliu.pdf"}
+    {
+      "titlu": "Observator – Schimbarea numelui după căsătorie sau divorț",
+      "url": "https://observatornews.ro/social/schimbarea-numelui-dupa-casatorie-sau-divort-ce-acte-se-schimba-si-in-ce-ordine-650639.html"
+    },
+    {
+      "titlu": "Primăria Tîrgșoru Vechi – Acte pentru buletin (certificat/hotărâre de divorț definitivă)",
+      "url": "https://comunatirgsoruvechi.ro/images/fisiere/evid-pers-st-civ/evid-pers/acte/schimb-domiciliu.pdf"
+    }
   ]
 }

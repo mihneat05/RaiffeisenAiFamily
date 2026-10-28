@@ -4,50 +4,135 @@
   "versiune": "0.1",
   "status_verificare": "Bazat pe Condițiile generale Raiffeisen pentru persoane fizice și informații publice; cazurile speciale (titular care nu se poate deplasa) se confirmă la sucursală.",
   "cuvinte_cheie": [
-    "procură", "împuternicire", "împuternicit", "în locul mamei", "în locul tatălui",
-    "nu se poate deplasa", "bolnav", "spital", "în străinătate", "mandatar", "să ridic cardul"
+    "procură",
+    "împuternicire",
+    "împuternicit",
+    "în locul mamei",
+    "în locul tatălui",
+    "nu se poate deplasa",
+    "bolnav",
+    "spital",
+    "în străinătate",
+    "mandatar",
+    "să ridic cardul"
   ],
   "ton": {
     "stil": "calm, răbdător; adesea e vorba de un părinte în vârstă sau bolnav",
     "deschidere_recomandata": "Te ajut să vezi cum poți rezolva lucrurile la bancă în locul persoanei dragi, fără drumuri inutile.",
-    "de_evitat": ["detalii medicale inutile", "promisiuni că banca va accepta o anumită procură"]
+    "de_evitat": [
+      "detalii medicale inutile",
+      "promisiuni că banca va accepta o anumită procură"
+    ]
   },
   "intrebari_de_clarificare": [
-    {"id": "titular_poate_veni", "intrebare": "Titularul contului poate veni la bancă, măcar o dată?", "optiuni": ["da", "nu"]},
-    {"id": "are_procura", "intrebare": "Aveți deja o procură făcută la notar?", "optiuni": ["da", "nu"]},
-    {"id": "ce_vrea_sa_faca", "intrebare": "Ce vrei să faci în numele titularului?", "optiuni": ["retrageri_depuneri", "ridicare_card", "actualizare_date", "altceva"]}
+    {
+      "id": "titular_poate_veni",
+      "intrebare": "Titularul contului poate veni la bancă, măcar o dată?",
+      "optiuni": [
+        "da",
+        "nu"
+      ]
+    },
+    {
+      "id": "are_procura",
+      "intrebare": "Aveți deja o procură făcută la notar?",
+      "optiuni": [
+        "da",
+        "nu"
+      ]
+    },
+    {
+      "id": "ce_vrea_sa_faca",
+      "intrebare": "Ce vrei să faci în numele titularului?",
+      "optiuni": [
+        "retrageri_depuneri",
+        "ridicare_card",
+        "actualizare_date",
+        "altceva"
+      ]
+    }
   ],
   "scenarii": [
     {
       "id": "imputernicit_pe_cont_la_banca",
       "descriere": "Titularul vine la bancă și numește un împuternicit pe cont, prin formularele băncii.",
-      "acte_necesare": ["act_identitate_titular", "act_identitate_imputernicit"],
+      "acte_necesare": [
+        "act_identitate_titular",
+        "act_identitate_imputernicit"
+      ],
       "acte_optionale": [],
       "conditii": [
         "Titularul și împuternicitul vin împreună, iar datele și specimenul de semnătură al împuternicitului se completează pe formularele băncii.",
         "Împuternicitul trebuie să aibă capacitate deplină de exercițiu (major, fără interdicții)."
       ],
-      "mesaj_client": "Varianta cea mai simplă: veniți amândoi la bancă cu buletinele și completați formularul de împuternicire acolo."
+      "mesaj_client": "Varianta cea mai simplă: veniți amândoi la bancă cu buletinele și completați formularul de împuternicire acolo.",
+      "procedura_raiffeisen": {
+        "titlu": "Împuternicit pe cont, direct la bancă",
+        "pasi": [
+          "Titularul și viitorul împuternicit vin împreună la orice sucursală Raiffeisen Bank, fiecare cu actul de identitate.",
+          "Completați formularul de împuternicire și alegeți ce operațiuni poate face împuternicitul.",
+          "Împuternicitul semnează specimenul de semnătură.",
+          "Împuternicirea este activă imediat după semnare."
+        ],
+        "durata": "pe loc, în aproximativ 15–20 de minute",
+        "important": "Împuternicirea încetează la decesul titularului sau dacă titularul o revocă.",
+        "status": "model propus de echipă pentru hackathon (pași generali din surse publice; durate și detalii interne de confirmat cu banca)"
+      }
     },
     {
       "id": "procura_notariala",
       "descriere": "Titularul nu poate veni la bancă și dă o procură notarială.",
-      "acte_necesare": ["procura_notariala", "act_identitate_imputernicit"],
-      "acte_optionale": ["act_identitate_titular_copie"],
+      "acte_necesare": [
+        "procura_notariala",
+        "act_identitate_imputernicit"
+      ],
+      "acte_optionale": [
+        "act_identitate_titular_copie"
+      ],
       "conditii": [
         "Procura trebuie autentificată de un notar public din România sau la un consulat românesc.",
         "Procura făcută la un notar din străinătate trebuie apostilată sau supralegalizată.",
         "Procura trebuie să enumere clar ce poate face împuternicitul (de ex. retrageri, ridicare card, actualizare date)."
       ],
-      "mesaj_client": "Titularul face o procură la notar în care scrie exact ce poți face tu. Apoi vii la bancă cu procura și buletinul tău."
+      "mesaj_client": "Titularul face o procură la notar în care scrie exact ce poți face tu. Apoi vii la bancă cu procura și buletinul tău.",
+      "procedura_raiffeisen": {
+        "titlu": "Împuternicire prin procură notarială",
+        "pasi": [
+          "Titularul face la notar o procură specială pentru bancă, în care scrie clar operațiunile permise.",
+          "Împuternicitul vine la sucursală cu procura în original și cu actul său de identitate.",
+          "Banca verifică procura (inclusiv în registrul notarial) și păstrează o copie la dosar.",
+          "După verificare, împuternicitul este înregistrat și poate face operațiunile din procură."
+        ],
+        "durata": "verificarea procurii durează de regulă 1–2 zile lucrătoare",
+        "important": "O procură emisă în străinătate are nevoie de apostilă.",
+        "status": "model propus de echipă pentru hackathon (pași generali din surse publice; durate și detalii interne de confirmat cu banca)"
+      }
     },
     {
       "id": "titular_nu_se_poate_deplasa",
       "descriere": "Titularul nu se poate deplasa nici la notar (de ex. este imobilizat).",
-      "acte_necesare": ["act_identitate_imputernicit"],
-      "acte_optionale": ["scrisoare_medicala"],
-      "conditii": ["Situația se discută cu consilierul; mulți notari se pot deplasa la domiciliu sau în spital pentru procură."],
-      "mesaj_client": "În cazul ăsta e bine să vorbești direct cu un consilier. De obicei, notarul poate veni acasă sau la spital pentru procură."
+      "acte_necesare": [
+        "act_identitate_imputernicit"
+      ],
+      "acte_optionale": [
+        "scrisoare_medicala"
+      ],
+      "conditii": [
+        "Situația se discută cu consilierul; mulți notari se pot deplasa la domiciliu sau în spital pentru procură."
+      ],
+      "mesaj_client": "În cazul ăsta e bine să vorbești direct cu un consilier. De obicei, notarul poate veni acasă sau la spital pentru procură.",
+      "procedura_raiffeisen": {
+        "titlu": "Titularul nu se poate deplasa (boală, spitalizare)",
+        "pasi": [
+          "Chemi un notar la domiciliul sau la spitalul titularului pentru a face procura specială pentru bancă.",
+          "Păstrează scrisoarea medicală: ajută la explicarea situației, dar nu înlocuiește procura.",
+          "Vii la sucursală cu procura în original și actul tău de identitate.",
+          "Banca verifică procura și te înregistrează ca împuternicit."
+        ],
+        "durata": "verificarea procurii durează de regulă 1–2 zile lucrătoare",
+        "important": "Dacă titularul nu mai are discernământ, procura nu mai e posibilă: e nevoie de o măsură de ocrotire stabilită de instanță.",
+        "status": "model propus de echipă pentru hackathon (pași generali din surse publice; durate și detalii interne de confirmat cu banca)"
+      }
     }
   ],
   "acte": [
@@ -56,10 +141,25 @@
       "nume": "Carte de identitate a titularului contului",
       "emitent": "SPCLEP / MAI",
       "format_cerut": "original",
-      "campuri_cheie": ["nume", "prenume", "cnp", "serie", "numar", "data_expirarii"],
+      "campuri_cheie": [
+        "nume",
+        "prenume",
+        "cnp",
+        "serie",
+        "numar",
+        "data_expirarii"
+      ],
       "reguli_validare": [
-        {"id": "cnp_valid", "camp": "cnp", "descriere": "CNP valid (cifra de control)"},
-        {"id": "neexpirat", "camp": "data_expirarii", "descriere": "Actul nu este expirat"}
+        {
+          "id": "cnp_valid",
+          "camp": "cnp",
+          "descriere": "CNP valid (cifra de control)"
+        },
+        {
+          "id": "neexpirat",
+          "camp": "data_expirarii",
+          "descriere": "Actul nu este expirat"
+        }
       ]
     },
     {
@@ -67,19 +167,48 @@
       "nume": "Copie după buletinul titularului",
       "emitent": "SPCLEP / MAI",
       "format_cerut": "copie, opțional",
-      "campuri_cheie": ["nume", "prenume", "cnp"],
-      "reguli_validare": [{"id": "cnp_valid", "camp": "cnp", "descriere": "CNP valid"}]
+      "campuri_cheie": [
+        "nume",
+        "prenume",
+        "cnp"
+      ],
+      "reguli_validare": [
+        {
+          "id": "cnp_valid",
+          "camp": "cnp",
+          "descriere": "CNP valid"
+        }
+      ]
     },
     {
       "id": "act_identitate_imputernicit",
       "nume": "Carte de identitate a împuternicitului",
       "emitent": "SPCLEP / MAI",
       "format_cerut": "original",
-      "campuri_cheie": ["nume", "prenume", "cnp", "serie", "numar", "data_expirarii"],
+      "campuri_cheie": [
+        "nume",
+        "prenume",
+        "cnp",
+        "serie",
+        "numar",
+        "data_expirarii"
+      ],
       "reguli_validare": [
-        {"id": "cnp_valid", "camp": "cnp", "descriere": "CNP valid (cifra de control)"},
-        {"id": "neexpirat", "camp": "data_expirarii", "descriere": "Actul nu este expirat"},
-        {"id": "major", "camp": "cnp", "descriere": "Din CNP rezultă că împuternicitul are cel puțin 18 ani"}
+        {
+          "id": "cnp_valid",
+          "camp": "cnp",
+          "descriere": "CNP valid (cifra de control)"
+        },
+        {
+          "id": "neexpirat",
+          "camp": "data_expirarii",
+          "descriere": "Actul nu este expirat"
+        },
+        {
+          "id": "major",
+          "camp": "cnp",
+          "descriere": "Din CNP rezultă că împuternicitul are cel puțin 18 ani"
+        }
       ]
     },
     {
@@ -87,12 +216,35 @@
       "nume": "Procură notarială (specială)",
       "emitent": "Notar public din România / consulat român (sau notar străin + apostilă)",
       "format_cerut": "original",
-      "campuri_cheie": ["mandant_nume", "mandant_cnp", "mandatar_nume", "mandatar_cnp", "banca", "operatiuni_permise", "notar", "numar_incheiere", "data", "apostila"],
+      "campuri_cheie": [
+        "mandant_nume",
+        "mandant_cnp",
+        "mandatar_nume",
+        "mandatar_cnp",
+        "banca",
+        "operatiuni_permise",
+        "notar",
+        "numar_incheiere",
+        "data",
+        "apostila"
+      ],
       "reguli_validare": [
-        {"id": "semnat_stampilat", "descriere": "Are semnătura și ștampila notarului"},
-        {"id": "mentioneaza_banca", "descriere": "Procura menționează operațiuni bancare / Raiffeisen Bank"},
-        {"id": "operatiuni_explicite", "descriere": "Sunt enumerate operațiunile permise"},
-        {"id": "apostila_daca_strainatate", "descriere": "Dacă e emisă de un notar străin, are apostilă"}
+        {
+          "id": "semnat_stampilat",
+          "descriere": "Are semnătura și ștampila notarului"
+        },
+        {
+          "id": "mentioneaza_banca",
+          "descriere": "Procura menționează operațiuni bancare / Raiffeisen Bank"
+        },
+        {
+          "id": "operatiuni_explicite",
+          "descriere": "Sunt enumerate operațiunile permise"
+        },
+        {
+          "id": "apostila_daca_strainatate",
+          "descriere": "Dacă e emisă de un notar străin, are apostilă"
+        }
       ]
     },
     {
@@ -100,15 +252,35 @@
       "nume": "Scrisoare / adeverință medicală",
       "emitent": "Medic / spital",
       "format_cerut": "opțional, doar ca context pentru consilier",
-      "campuri_cheie": ["nume_pacient", "cnp_pacient", "data"],
+      "campuri_cheie": [
+        "nume_pacient",
+        "cnp_pacient",
+        "data"
+      ],
       "reguli_validare": []
     }
   ],
   "crosscheck": [
-    {"id": "mandatar_este_solicitant", "descriere": "Numele și CNP-ul mandatarului din procură coincid cu buletinul împuternicitului", "severitate_daca_esueaza": "eroare"},
-    {"id": "mandant_este_titular", "descriere": "Mandantul din procură este titularul contului (nume + CNP coincid cu buletinul titularului, dacă e încărcat)", "severitate_daca_esueaza": "eroare"},
-    {"id": "operatiune_acoperita", "descriere": "Ce vrea să facă clientul apare printre operațiunile permise în procură", "severitate_daca_esueaza": "avertisment"},
-    {"id": "titular_in_viata", "descriere": "Împuternicirea pe cont e valabilă doar pe timpul vieții titularului; dacă titularul a decedat, se trece pe fluxul Deces/Succesiune", "severitate_daca_esueaza": "eroare"}
+    {
+      "id": "mandatar_este_solicitant",
+      "descriere": "Numele și CNP-ul mandatarului din procură coincid cu buletinul împuternicitului",
+      "severitate_daca_esueaza": "eroare"
+    },
+    {
+      "id": "mandant_este_titular",
+      "descriere": "Mandantul din procură este titularul contului (nume + CNP coincid cu buletinul titularului, dacă e încărcat)",
+      "severitate_daca_esueaza": "eroare"
+    },
+    {
+      "id": "operatiune_acoperita",
+      "descriere": "Ce vrea să facă clientul apare printre operațiunile permise în procură",
+      "severitate_daca_esueaza": "avertisment"
+    },
+    {
+      "id": "titular_in_viata",
+      "descriere": "Împuternicirea pe cont e valabilă doar pe timpul vieții titularului; dacă titularul a decedat, se trece pe fluxul Deces/Succesiune",
+      "severitate_daca_esueaza": "eroare"
+    }
   ],
   "pasi": [
     "Dacă titularul poate veni la bancă: veniți amândoi cu buletinele și completați formularul de împuternicire.",
@@ -124,9 +296,18 @@
     "Împuternicirea încetează la decesul titularului; după aceea doar moștenitorii pot accesa contul."
   ],
   "faq": [
-    {"intrebare": "Pot ridica banii mamei cu o procură după ce a decedat?", "raspuns": "Nu. Împuternicirea e valabilă doar cât trăiește titularul. După deces, accesul la bani se face prin succesiune, cu certificat de moștenitor."},
-    {"intrebare": "Ca împuternicit pot cere extras de cont?", "raspuns": "Ca împuternicit pe cont poți afla soldul și operațiunile făcute de tine, dar nu poți cere extras de cont."},
-    {"intrebare": "Titularul e în străinătate. Cum face procura?", "raspuns": "La un consulat român sau la un notar de acolo; în al doilea caz, procura trebuie apostilată."}
+    {
+      "intrebare": "Pot ridica banii mamei cu o procură după ce a decedat?",
+      "raspuns": "Nu. Împuternicirea e valabilă doar cât trăiește titularul. După deces, accesul la bani se face prin succesiune, cu certificat de moștenitor."
+    },
+    {
+      "intrebare": "Ca împuternicit pot cere extras de cont?",
+      "raspuns": "Ca împuternicit pe cont poți afla soldul și operațiunile făcute de tine, dar nu poți cere extras de cont."
+    },
+    {
+      "intrebare": "Titularul e în străinătate. Cum face procura?",
+      "raspuns": "La un consulat român sau la un notar de acolo; în al doilea caz, procura trebuie apostilată."
+    }
   ],
   "trimite_la_consilier_cand": [
     "titularul nu se poate deplasa nici la notar",
@@ -136,8 +317,17 @@
     "întrebarea nu are răspuns în această bază de cunoștințe"
   ],
   "surse": [
-    {"titlu": "Raiffeisen – Condiții generale de derulare a operațiunilor bancare pentru persoane fizice", "url": "https://www.raiffeisen.ro/content/dam/rbi/retail/eu/ro/documents/conditii-general-bancare-pf/20240220-Conditii-generale-de-derulare-a-operatiunilor-bancare-pentru-persoane-fizice.pdf.coredownload.inline.pdf"},
-    {"titlu": "Raiffeisen – Info Desk persoane fizice", "url": "https://banking.raiffeisen.ro/info-desk/"},
-    {"titlu": "Raiffeisen – Notificare persoane fizice (card suplimentar pentru împuternicit)", "url": "https://www.raiffeisen.ro/content/dam/rbi/retail/eu/ro/documents/pf/in-sprijinul-tau/20231125-Notificare-Persoane-fizice.pdf"}
+    {
+      "titlu": "Raiffeisen – Condiții generale de derulare a operațiunilor bancare pentru persoane fizice",
+      "url": "https://www.raiffeisen.ro/content/dam/rbi/retail/eu/ro/documents/conditii-general-bancare-pf/20240220-Conditii-generale-de-derulare-a-operatiunilor-bancare-pentru-persoane-fizice.pdf.coredownload.inline.pdf"
+    },
+    {
+      "titlu": "Raiffeisen – Info Desk persoane fizice",
+      "url": "https://banking.raiffeisen.ro/info-desk/"
+    },
+    {
+      "titlu": "Raiffeisen – Notificare persoane fizice (card suplimentar pentru împuternicit)",
+      "url": "https://www.raiffeisen.ro/content/dam/rbi/retail/eu/ro/documents/pf/in-sprijinul-tau/20231125-Notificare-Persoane-fizice.pdf"
+    }
   ]
 }

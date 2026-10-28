@@ -182,6 +182,41 @@ out center tags;"""
     return len(lista)
 
 
+def enrich(pauza=1.1):
+    """Completează strada / orașul lipsă din coordonate (Nominatim reverse, max 1 cerere/secundă)."""
+    import time
+    lista = json.loads(DATA_FILE.read_text(encoding="utf-8"))
+    lipsa = [el for el in lista if not (el["tags"].get("addr:street") and
+             (el["tags"].get("addr:city") or el["tags"].get("addr:town") or el["tags"].get("addr:village")))]
+    print(f"{len(lipsa)} unități fără adresă completă. Durează cam {len(lipsa) * pauza / 60:.0f} minute...")
+    ok = 0
+    for i, el in enumerate(lipsa, 1):
+        q = urllib.parse.urlencode({"lat": el["lat"], "lon": el["lon"], "format": "json", "zoom": 18,
+                                    "addressdetails": 1, "accept-language": "ro"})
+        try:
+            a = _get_json(f"https://nominatim.openstreetmap.org/reverse?{q}").get("address", {})
+            t = el["tags"]
+            strada = a.get("road") or a.get("pedestrian") or a.get("square")
+            if strada and not t.get("addr:street"):
+                t["addr:street"] = strada
+                if a.get("house_number") and not t.get("addr:housenumber"):
+                    t["addr:housenumber"] = a["house_number"]
+            oras = a.get("city") or a.get("town") or a.get("village") or a.get("municipality")
+            if oras and not (t.get("addr:city") or t.get("addr:town") or t.get("addr:village")):
+                t["addr:city"] = oras
+            t["addr_sursa"] = "completat automat din coordonate"
+            ok += 1
+        except Exception as e:
+            print(f"  [{i}] eroare: {e}")
+        if i % 20 == 0:
+            print(f"  {i}/{len(lipsa)}")
+            DATA_FILE.write_text(json.dumps(lista, ensure_ascii=False, indent=0), encoding="utf-8")  # salvăm pe parcurs
+        time.sleep(pauza)
+    DATA_FILE.write_text(json.dumps(lista, ensure_ascii=False, indent=0), encoding="utf-8")
+    _lista_locala.cache_clear()
+    return ok
+
+
 @lru_cache(maxsize=1)
 def _lista_locala():
     if not DATA_FILE.exists():
@@ -246,6 +281,24 @@ def _cauta(text):
             return {"locatie": dict(info, raza_km=raza), "sucursale": top,
                     "sursa": "OpenStreetMap (poate fi incomplet; programul se verifică pe raiffeisen.ro)"}
     return {"locatie": info, "sucursale": [], "mesaj": f"Nu am găsit sucursale Raiffeisen pe o rază de {RAZE_KM[-1]} km."}
+
+
+def find_nearest_coords(lat, lon, eticheta="locația ta"):
+    """Când avem deja coordonatele (GPS din browser): distanțe calculate local, fără geocodare."""
+    try:
+        lat, lon = float(lat), float(lon)
+        info = {"text": eticheta, "gasit": eticheta, "lat": lat, "lon": lon}
+        lista = _lista_locala()
+        if lista:
+            return {"locatie": info, "sucursale": _din_lista(lat, lon, lista), "sursa": "listă locală OpenStreetMap"}
+        for raza in RAZE_KM:
+            top = _din_lista(lat, lon, _overpass(lat, lon, raza))
+            if top:
+                return {"locatie": info, "sucursale": top, "sursa": "OpenStreetMap"}
+        return {"locatie": info, "sucursale": [], "mesaj": "Nu am găsit sucursale Raiffeisen în apropiere."}
+    except Exception as e:
+        return {"eroare": "fara_conexiune", "mesaj": "Nu pot căuta sucursalele acum. Le găsești pe raiffeisen.ro sau la *2000.",
+                "detalii": str(e)}
 
 
 def find_nearest(text):
@@ -334,7 +387,9 @@ def find_nearest_from_address(adresa):
 if __name__ == "__main__":
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
-    if sys.argv[1:2] == ["--update"]:
+    if sys.argv[1:2] == ["--enrich"]:
+        print(f"Gata: {enrich()} unități completate în {DATA_FILE.name}")
+    elif sys.argv[1:2] == ["--update"]:
         print("Descarc lista sucursalelor Raiffeisen din OpenStreetMap (poate dura 1-2 minute)...")
         print(f"Gata: {update()} unități salvate în {DATA_FILE.name}")
     else:

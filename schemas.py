@@ -77,10 +77,16 @@ class CertificatMostenitor(ActBase):
 
 
 class CertificatCasatorie(ActBase):
+    """Pe certificatul românesc, fiecare soț are: numele de familie ÎNAINTE de căsătorie, numele de familie
+    DUPĂ căsătorie și prenumele. Le citim separat, ca să comparăm buletinul nou cu numele de după."""
     tip_act: Literal["certificat_casatorie"] = "certificat_casatorie"
-    nume_sot: Optional[str] = None
+    nume_sot: Optional[str] = None            # numele de familie al soțului ÎNAINTE de căsătorie
+    nume_sot_dupa: Optional[str] = None       # numele de familie al soțului DUPĂ căsătorie
+    prenume_sot: Optional[str] = None
     cnp_sot: Optional[str] = None
-    nume_sotie: Optional[str] = None
+    nume_sotie: Optional[str] = None          # numele de familie al soției ÎNAINTE de căsătorie (de fată)
+    nume_sotie_dupa: Optional[str] = None     # numele de familie al soției DUPĂ căsătorie
+    prenume_sotie: Optional[str] = None
     cnp_sotie: Optional[str] = None
     data_casatoriei: Optional[date] = None
 
@@ -91,6 +97,9 @@ class SentintaDivort(ActBase):
     cnp_reclamant: Optional[str] = None
     nume_parat: Optional[str] = None
     cnp_parat: Optional[str] = None
+    # numele de familie pe care îl va purta fiecare după divorț (sentința îl stabilește), dacă apare
+    nume_dupa_divort_reclamant: Optional[str] = None
+    nume_dupa_divort_parat: Optional[str] = None
     data_ramanerii_definitive: Optional[date] = None
 
 

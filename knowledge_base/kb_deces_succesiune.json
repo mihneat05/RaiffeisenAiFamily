@@ -4,37 +4,110 @@
   "versiune": "0.1",
   "status_verificare": "Bazat pe informații publice; lista finală poate diferi de la caz la caz și trebuie confirmată la sucursală.",
   "cuvinte_cheie": [
-    "a murit", "a decedat", "deces", "înmormântare", "moștenire", "succesiune",
-    "moștenitor", "contul tatălui", "contul mamei", "banii din cont", "notar"
+    "a murit",
+    "a decedat",
+    "deces",
+    "înmormântare",
+    "moștenire",
+    "succesiune",
+    "moștenitor",
+    "contul tatălui",
+    "contul mamei",
+    "banii din cont",
+    "notar"
   ],
   "ton": {
     "stil": "cald, empatic, propoziții scurte, fără jargon juridic",
     "deschidere_recomandata": "Îmi pare rău pentru pierderea ta. Te ajut să vezi exact ce acte îți trebuie, ca să nu fie nevoie să mergi de mai multe ori la bancă.",
-    "de_evitat": ["termeni juridici neexplicați", "liste lungi dintr-odată", "promisiuni despre termene sau sume"]
+    "de_evitat": [
+      "termeni juridici neexplicați",
+      "liste lungi dintr-odată",
+      "promisiuni despre termene sau sume"
+    ]
   },
   "intrebari_de_clarificare": [
-    {"id": "scop", "intrebare": "Ce vrei să faci acum: să anunți banca de deces sau să intri în posesia banilor din cont?", "optiuni": ["anuntare_deces", "ridicare_bani"]},
-    {"id": "succesiune_finalizata", "intrebare": "Ați terminat deja succesiunea la notar și aveți certificatul de moștenitor?", "optiuni": ["da", "nu", "nu_stiu"]},
-    {"id": "nr_mostenitori", "intrebare": "Câți moștenitori sunteți și veniți toți la bancă?", "optiuni": ["unul", "mai_multi_vin_toti", "mai_multi_vine_unul_cu_procura"]}
+    {
+      "id": "scop",
+      "intrebare": "Ce vrei să faci acum: să anunți banca de deces sau să intri în posesia banilor din cont?",
+      "optiuni": [
+        "anuntare_deces",
+        "ridicare_bani"
+      ]
+    },
+    {
+      "id": "succesiune_finalizata",
+      "intrebare": "Ați terminat deja succesiunea la notar și aveți certificatul de moștenitor?",
+      "optiuni": [
+        "da",
+        "nu",
+        "nu_stiu"
+      ]
+    },
+    {
+      "id": "nr_mostenitori",
+      "intrebare": "Câți moștenitori sunteți și veniți toți la bancă?",
+      "optiuni": [
+        "unul",
+        "mai_multi_vin_toti",
+        "mai_multi_vine_unul_cu_procura"
+      ]
+    }
   ],
   "scenarii": [
     {
       "id": "anuntare_deces",
       "descriere": "Familia anunță banca de decesul titularului de cont.",
-      "acte_necesare": ["certificat_deces", "act_identitate_solicitant"],
-      "acte_optionale": ["contract_cont_sau_iban"],
-      "mesaj_client": "Este bine să anunți banca din timp, ca să nu se mai acumuleze comisioane pe cont."
+      "acte_necesare": [
+        "certificat_deces",
+        "act_identitate_solicitant"
+      ],
+      "acte_optionale": [
+        "contract_cont_sau_iban"
+      ],
+      "mesaj_client": "Este bine să anunți banca din timp, ca să nu se mai acumuleze comisioane pe cont.",
+      "procedura_raiffeisen": {
+        "titlu": "Anunțarea decesului titularului de cont",
+        "pasi": [
+          "Te prezinți la orice sucursală Raiffeisen Bank cu certificatul de deces (original) și actul tău de identitate.",
+          "Consilierul înregistrează decesul: conturile și cardurile titularului sunt blocate, iar plățile programate și comisioanele se opresc.",
+          "Primești o confirmare scrisă că banca a înregistrat decesul.",
+          "Când deschizi succesiunea, notarul cere direct băncii situația conturilor; nu trebuie să o aduci tu."
+        ],
+        "durata": "pe loc, în aproximativ 20–30 de minute",
+        "important": "Din momentul decesului, nicio procură sau împuternicire pe cont nu mai este valabilă.",
+        "status": "model propus de echipă pentru hackathon (pași generali din surse publice; durate și detalii interne de confirmat cu banca)"
+      }
     },
     {
       "id": "ridicare_bani",
       "descriere": "Moștenitorii vor să intre în posesia sumelor din contul persoanei decedate.",
-      "acte_necesare": ["certificat_deces", "certificat_mostenitor", "act_identitate_solicitant"],
-      "acte_optionale": ["contract_cont_sau_iban", "procura_notariala"],
+      "acte_necesare": [
+        "certificat_deces",
+        "certificat_mostenitor",
+        "act_identitate_solicitant"
+      ],
+      "acte_optionale": [
+        "contract_cont_sau_iban",
+        "procura_notariala"
+      ],
       "conditii": [
         "Dacă sunt mai mulți moștenitori, fiecare care vine la bancă are nevoie de actul său de identitate.",
         "Dacă un moștenitor nu poate veni, îl poate reprezenta altcineva cu procură notarială (vezi fluxul Împuternicire)."
       ],
-      "mesaj_client": "Documentul cel mai important este certificatul de moștenitor. Fără el, banca nu poate elibera banii."
+      "mesaj_client": "Documentul cel mai important este certificatul de moștenitor. Fără el, banca nu poate elibera banii.",
+      "procedura_raiffeisen": {
+        "titlu": "Eliberarea banilor către moștenitori",
+        "pasi": [
+          "Îți faci o programare la sucursală (online pe raiffeisen.ro sau la *2000).",
+          "Depui certificatul de deces, certificatul de moștenitor și actul tău de identitate. Moștenitorii care nu vin au nevoie de procură notarială.",
+          "Consilierul verifică actele și cotele din certificatul de moștenitor.",
+          "Semnezi cererea de lichidare a conturilor și alegi cum primești banii: numerar sau transfer în contul tău.",
+          "Banca plătește fiecărui moștenitor cota care i se cuvine."
+        ],
+        "durata": "verificarea dosarului durează de regulă 1–3 zile lucrătoare; plata se face după aprobare",
+        "important": "Fără certificatul de moștenitor (sau o hotărâre judecătorească definitivă), banca nu poate elibera banii.",
+        "status": "model propus de echipă pentru hackathon (pași generali din surse publice; durate și detalii interne de confirmat cu banca)"
+      }
     }
   ],
   "acte": [
@@ -43,11 +116,29 @@
       "nume": "Certificat de deces",
       "emitent": "Primărie / Serviciul de stare civilă",
       "format_cerut": "original (banca poate face copie)",
-      "campuri_cheie": ["nume_defunct", "prenume_defunct", "cnp_defunct", "data_decesului", "locul_decesului", "serie_numar_certificat", "data_eliberarii"],
+      "campuri_cheie": [
+        "nume_defunct",
+        "prenume_defunct",
+        "cnp_defunct",
+        "data_decesului",
+        "locul_decesului",
+        "serie_numar_certificat",
+        "data_eliberarii"
+      ],
       "reguli_validare": [
-        {"id": "cnp_valid", "camp": "cnp_defunct", "descriere": "CNP-ul are 13 cifre și cifra de control corectă"},
-        {"id": "campuri_complete", "descriere": "Nume, CNP, data decesului și seria/numărul sunt prezente"},
-        {"id": "data_logica", "descriere": "Data decesului nu este în viitor și este înaintea datei eliberării"}
+        {
+          "id": "cnp_valid",
+          "camp": "cnp_defunct",
+          "descriere": "CNP-ul are 13 cifre și cifra de control corectă"
+        },
+        {
+          "id": "campuri_complete",
+          "descriere": "Nume, CNP, data decesului și seria/numărul sunt prezente"
+        },
+        {
+          "id": "data_logica",
+          "descriere": "Data decesului nu este în viitor și este înaintea datei eliberării"
+        }
       ]
     },
     {
@@ -55,11 +146,28 @@
       "nume": "Certificat de moștenitor (sau hotărâre judecătorească definitivă de stabilire a calității de moștenitor)",
       "emitent": "Notar public / instanță",
       "format_cerut": "original sau copie legalizată",
-      "campuri_cheie": ["nume_defunct", "cnp_defunct", "mostenitori[nume, cnp, cota]", "notar", "numar_certificat", "data_emiterii", "semnatura_stampila"],
+      "campuri_cheie": [
+        "nume_defunct",
+        "cnp_defunct",
+        "mostenitori[nume, cnp, cota]",
+        "notar",
+        "numar_certificat",
+        "data_emiterii",
+        "semnatura_stampila"
+      ],
       "reguli_validare": [
-        {"id": "semnat_stampilat", "descriere": "Are semnătura și ștampila notarului"},
-        {"id": "hotarare_definitiva", "descriere": "Dacă e hotărâre judecătorească, trebuie să fie definitivă"},
-        {"id": "mostenitori_prezenti", "descriere": "Conține cel puțin un moștenitor cu nume și CNP"}
+        {
+          "id": "semnat_stampilat",
+          "descriere": "Are semnătura și ștampila notarului"
+        },
+        {
+          "id": "hotarare_definitiva",
+          "descriere": "Dacă e hotărâre judecătorească, trebuie să fie definitivă"
+        },
+        {
+          "id": "mostenitori_prezenti",
+          "descriere": "Conține cel puțin un moștenitor cu nume și CNP"
+        }
       ]
     },
     {
@@ -67,10 +175,25 @@
       "nume": "Carte de identitate a solicitantului (moștenitor sau împuternicit)",
       "emitent": "SPCLEP / MAI",
       "format_cerut": "original",
-      "campuri_cheie": ["nume", "prenume", "cnp", "serie", "numar", "data_expirarii"],
+      "campuri_cheie": [
+        "nume",
+        "prenume",
+        "cnp",
+        "serie",
+        "numar",
+        "data_expirarii"
+      ],
       "reguli_validare": [
-        {"id": "cnp_valid", "camp": "cnp", "descriere": "CNP valid (cifra de control)"},
-        {"id": "neexpirat", "camp": "data_expirarii", "descriere": "Actul nu este expirat la data vizitei"}
+        {
+          "id": "cnp_valid",
+          "camp": "cnp",
+          "descriere": "CNP valid (cifra de control)"
+        },
+        {
+          "id": "neexpirat",
+          "camp": "data_expirarii",
+          "descriere": "Actul nu este expirat la data vizitei"
+        }
       ]
     },
     {
@@ -78,10 +201,24 @@
       "nume": "Procură notarială",
       "emitent": "Notar public",
       "format_cerut": "original",
-      "campuri_cheie": ["mandant_nume", "mandant_cnp", "mandatar_nume", "mandatar_cnp", "puteri_acordate", "notar", "data"],
+      "campuri_cheie": [
+        "mandant_nume",
+        "mandant_cnp",
+        "mandatar_nume",
+        "mandatar_cnp",
+        "puteri_acordate",
+        "notar",
+        "data"
+      ],
       "reguli_validare": [
-        {"id": "semnat_stampilat", "descriere": "Are semnătura și ștampila notarului"},
-        {"id": "mentioneaza_banca", "descriere": "Procura acoperă operațiuni bancare / ridicarea sumelor"}
+        {
+          "id": "semnat_stampilat",
+          "descriere": "Are semnătura și ștampila notarului"
+        },
+        {
+          "id": "mentioneaza_banca",
+          "descriere": "Procura acoperă operațiuni bancare / ridicarea sumelor"
+        }
       ]
     },
     {
@@ -89,15 +226,34 @@
       "nume": "Contractul de cont sau codul IBAN al defunctului",
       "emitent": "Banca",
       "format_cerut": "opțional, ajută la identificarea rapidă a contului",
-      "campuri_cheie": ["iban", "titular"],
+      "campuri_cheie": [
+        "iban",
+        "titular"
+      ],
       "reguli_validare": []
     }
   ],
   "crosscheck": [
-    {"id": "acelasi_defunct", "descriere": "Numele și CNP-ul defunctului coincid pe certificatul de deces și pe certificatul de moștenitor", "severitate_daca_esueaza": "eroare"},
-    {"id": "solicitant_este_mostenitor", "descriere": "Numele și CNP-ul de pe buletinul solicitantului apar printre moștenitorii din certificatul de moștenitor (sau solicitantul are procură de la un moștenitor)", "severitate_daca_esueaza": "eroare"},
-    {"id": "procura_leaga_persoanele", "descriere": "Dacă există procură: mandantul este moștenitor și mandatarul este solicitantul", "severitate_daca_esueaza": "eroare"},
-    {"id": "cronologie", "descriere": "Certificatul de moștenitor este emis după data decesului", "severitate_daca_esueaza": "avertisment"}
+    {
+      "id": "acelasi_defunct",
+      "descriere": "Numele și CNP-ul defunctului coincid pe certificatul de deces și pe certificatul de moștenitor",
+      "severitate_daca_esueaza": "eroare"
+    },
+    {
+      "id": "solicitant_este_mostenitor",
+      "descriere": "Numele și CNP-ul de pe buletinul solicitantului apar printre moștenitorii din certificatul de moștenitor (sau solicitantul are procură de la un moștenitor)",
+      "severitate_daca_esueaza": "eroare"
+    },
+    {
+      "id": "procura_leaga_persoanele",
+      "descriere": "Dacă există procură: mandantul este moștenitor și mandatarul este solicitantul",
+      "severitate_daca_esueaza": "eroare"
+    },
+    {
+      "id": "cronologie",
+      "descriere": "Certificatul de moștenitor este emis după data decesului",
+      "severitate_daca_esueaza": "avertisment"
+    }
   ],
   "pasi": [
     "Obții certificatul de deces de la starea civilă (primărie).",
@@ -114,10 +270,22 @@
     "Ia cu tine IBAN-ul sau contractul de cont, dacă le ai; ajută la găsirea rapidă a contului."
   ],
   "faq": [
-    {"intrebare": "Pot scoate banii doar cu certificatul de deces?", "raspuns": "De regulă nu. Pentru eliberarea banilor, banca are nevoie de certificatul de moștenitor (sau de o hotărâre judecătorească definitivă)."},
-    {"intrebare": "Cât durează după ce am certificatul de moștenitor?", "raspuns": "Nu pot să-ți spun un termen exact; depinde de bancă și de caz. Consilierul din sucursală îți poate confirma."},
-    {"intrebare": "Ce se întâmplă dacă nu anunț banca?", "raspuns": "Contul rămâne activ și poate acumula comisioane până când banca este informată."},
-    {"intrebare": "Am termen pentru succesiune?", "raspuns": "Codul Civil prevede un termen de 1 an de la deces pentru acceptarea moștenirii. Pentru detalii, întreabă un notar."}
+    {
+      "intrebare": "Pot scoate banii doar cu certificatul de deces?",
+      "raspuns": "De regulă nu. Pentru eliberarea banilor, banca are nevoie de certificatul de moștenitor (sau de o hotărâre judecătorească definitivă)."
+    },
+    {
+      "intrebare": "Cât durează după ce am certificatul de moștenitor?",
+      "raspuns": "Nu pot să-ți spun un termen exact; depinde de bancă și de caz. Consilierul din sucursală îți poate confirma."
+    },
+    {
+      "intrebare": "Ce se întâmplă dacă nu anunț banca?",
+      "raspuns": "Contul rămâne activ și poate acumula comisioane până când banca este informată."
+    },
+    {
+      "intrebare": "Am termen pentru succesiune?",
+      "raspuns": "Codul Civil prevede un termen de 1 an de la deces pentru acceptarea moștenirii. Pentru detalii, întreabă un notar."
+    }
   ],
   "trimite_la_consilier_cand": [
     "moștenitorii nu se înțeleg sau există proces în instanță",
@@ -127,9 +295,21 @@
     "întrebarea nu are răspuns în această bază de cunoștințe"
   ],
   "surse": [
-    {"titlu": "Raiffeisen – Emiterea extrasului de cont (acte în caz de deces al titularului)", "url": "https://www.raiffeisen.ro/content/dam/rbi/retail/eu/ro/documents/actionari/formulare/20181026-Emitere-extras-de-cont.pdf.coredownload.inline.pdf"},
-    {"titlu": "e-juridic – Contul bancar al persoanei decedate", "url": "https://e-juridic.manager.ro/articole/acte-necesare-acces-cont-bancar-persoana-decedata-30261.html"},
-    {"titlu": "Financer – Acte necesare acces cont persoană decedată", "url": "https://financer.ro/banii-tai/acte-necesare-acces-cont-bancar-persoana-decedata/"},
-    {"titlu": "Capital – Documentele cerute de bancă după deces", "url": "https://www.capital.ro/obligatie-la-banca-nu-se-poate-intra-in-posesia-banilor-din-cont-documentul-care-trebuie-depus-neaparat.html"}
+    {
+      "titlu": "Raiffeisen – Emiterea extrasului de cont (acte în caz de deces al titularului)",
+      "url": "https://www.raiffeisen.ro/content/dam/rbi/retail/eu/ro/documents/actionari/formulare/20181026-Emitere-extras-de-cont.pdf.coredownload.inline.pdf"
+    },
+    {
+      "titlu": "e-juridic – Contul bancar al persoanei decedate",
+      "url": "https://e-juridic.manager.ro/articole/acte-necesare-acces-cont-bancar-persoana-decedata-30261.html"
+    },
+    {
+      "titlu": "Financer – Acte necesare acces cont persoană decedată",
+      "url": "https://financer.ro/banii-tai/acte-necesare-acces-cont-bancar-persoana-decedata/"
+    },
+    {
+      "titlu": "Capital – Documentele cerute de bancă după deces",
+      "url": "https://www.capital.ro/obligatie-la-banca-nu-se-poate-intra-in-posesia-banilor-din-cont-documentul-care-trebuie-depus-neaparat.html"
+    }
   ]
 }

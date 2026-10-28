@@ -1,0 +1,5 @@
+﻿{
+  "eroare": "fara_conexiune",
+  "mesaj": "Nu pot c─âuta sucursalele acum (f─âr─â conexiune la hart─â). Le g─âse╚Öti pe raiffeisen.ro, la Re╚¢ea, sau la *2000.",
+  "detalii": "HTTP Error 504: Gateway Time-out"
+}

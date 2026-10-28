@@ -8,6 +8,11 @@ from pathlib import Path
 
 import streamlit as st
 
+try:  # detectarea locației din browser (GPS, cu rezervă după IP)
+    from streamlit_js_eval import streamlit_js_eval
+except ImportError:
+    streamlit_js_eval = None
+
 import backend
 from pdf_export import build_checklist_pdf
 
@@ -263,6 +268,48 @@ def _cauta_sucursala():
         st.session_state.branch_result = backend.find_branches(loc)
 
 
+# GPS-ul merge doar pe https sau localhost; altfel (ex. telefon pe http://192.168...) cădem pe locația după IP.
+GEO_JS = """(async () => {
+  const gps = await new Promise(res => {
+    if (!navigator.geolocation || !window.isSecureContext) return res(null);
+    navigator.geolocation.getCurrentPosition(
+      p => res({lat: p.coords.latitude, lon: p.coords.longitude, sursa: "gps", precizie: Math.round(p.coords.accuracy)}),
+      () => res(null), {enableHighAccuracy: true, timeout: 9000, maximumAge: 600000});
+  });
+  if (gps) return gps;
+  for (const [url, f] of [["https://ipapi.co/json/", j => [j.latitude, j.longitude, j.city]],
+                          ["https://get.geojs.io/v1/ip/geo.json", j => [+j.latitude, +j.longitude, j.city]]]) {
+    try { const j = await (await fetch(url)).json(); const [la, lo, c] = f(j);
+          if (la && lo) return {lat: la, lon: lo, sursa: "ip", oras: c}; } catch (e) {}
+  }
+  return {eroare: "nu am putut detecta locația"};
+})()"""
+
+
+def _cere_gps():
+    st.session_state.geo_req = st.session_state.get("geo_req", 0) + 1
+
+
+def detecteaza_locatia():
+    """Rulează JS în browser după apăsarea butonului; când vine răspunsul, caută sucursalele."""
+    req = st.session_state.get("geo_req", 0)
+    if not req or req == st.session_state.get("geo_done") or streamlit_js_eval is None:
+        return
+    pos = streamlit_js_eval(js_expressions=GEO_JS, key=f"geo_{req}")
+    if not pos:
+        st.caption("📍 Caut locația ta… (dacă browserul întreabă, apasă „Permite”)")
+        return
+    st.session_state.geo_done = req
+    if pos.get("eroare"):
+        st.session_state.branch_result = {"eroare": "fara_locatie",
+                                          "mesaj": "Nu am putut detecta locația. Scrie orașul și cartierul mai sus."}
+        return
+    eticheta = "locația ta (GPS)" if pos["sursa"] == "gps" else f"{pos.get('oras') or 'zona ta'} (aproximativ, după conexiune)"
+    st.session_state.locatie = eticheta
+    st.session_state.branch_result = backend.find_branches_coords(pos["lat"], pos["lon"], eticheta)
+    st.rerun()
+
+
 def adresa_din_buletin():
     """Domiciliul citit de P2 de pe primul buletin încărcat (sau None)."""
     for d in st.session_state.get("docs", []):
@@ -291,9 +338,15 @@ def render_branch():
                           label_visibility="collapsed")
             st.form_submit_button("🔎 Caută cea mai apropiată sucursală", on_click=_cauta_sucursala,
                                   use_container_width=True)
-        if adresa_din_buletin():
-            st.button("🪪 Caută lângă adresa din buletin", on_click=_cauta_dupa_buletin,
-                      use_container_width=True, key="btn_buletin")
+        c1, c2 = st.columns(2) if adresa_din_buletin() else (st.container(), None)
+        with c1:
+            if streamlit_js_eval is not None:
+                st.button("📍 Folosește locația mea", on_click=_cere_gps, use_container_width=True, key="btn_gps")
+        if c2 is not None:
+            with c2:
+                st.button("🪪 Lângă adresa din buletin", on_click=_cauta_dupa_buletin,
+                          use_container_width=True, key="btn_buletin")
+        detecteaza_locatia()
 
         res = st.session_state.get("branch_result")
         if not res:
@@ -301,6 +354,9 @@ def render_branch():
             return
         if not res.get("sucursale"):
             st.warning(res.get("mesaj", "Nu am găsit sucursale."))
+            if res.get("detalii"):
+                with st.expander("Detalii tehnice (pentru echipă)"):
+                    st.code(res["detalii"], language=None)
             return
 
         st.caption(f"Lângă: {res['locatie'].get('gasit', '')[:90]}")
@@ -311,6 +367,14 @@ def render_branch():
                 st.markdown(f"{'⭐ ' if i == 0 else ''}**{b['name']}** · {b['distance']}  \n{b['address']}")
                 st.caption(b["hours"] + (f" · ☎ {b['phone']}" if b.get("phone") else ""))
                 st.link_button("🧭 Navighează aici", b["booking_url"], use_container_width=True)
+        loc = res.get("locatie", {})
+        puncte = [{"lat": b["lat"], "lon": b["lon"], "color": "#1C161C", "size": 60} for b in res["sucursale"]]
+        if loc.get("lat") is not None:
+            puncte.append({"lat": loc["lat"], "lon": loc["lon"], "color": "#E5C700", "size": 90})
+        if puncte:
+            import pandas as pd
+            st.map(pd.DataFrame(puncte), latitude="lat", longitude="lon", color="color", size="size", zoom=12, height=230)
+            st.caption("⚫ sucursale · 🟡 tu")
         st.caption("Sursa: OpenStreetMap. Confirmă programul pe raiffeisen.ro sau la *2000.")
 
 

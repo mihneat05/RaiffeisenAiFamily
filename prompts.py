@@ -54,12 +54,21 @@ EXTRACT_HINTS = {
         "(ex: '1/2'). emitent = biroul notarial. semnat_stampilat: semnatura si stampila notarului."
     ),
     "certificat_casatorie": (
-        "Certificat de casatorie. Completeaza nume_sot, cnp_sot, nume_sotie, cnp_sotie, "
-        "data_casatoriei. Campurile generale nume/prenume/cnp raman null daca actul are doi "
-        "titulari. emitent = serviciul de stare civila."
+        "Certificat de casatorie. Pe certificat, pentru FIECARE sot exista rubricile: "
+        "'Numele de familie inainte de casatorie', 'Numele de familie dupa casatorie' si 'Prenumele'. "
+        "Completeaza SEPARAT: nume_sot = numele de familie al sotului INAINTE de casatorie, "
+        "nume_sot_dupa = numele de familie al sotului DUPA casatorie, prenume_sot, cnp_sot; "
+        "nume_sotie = numele de familie al sotiei INAINTE de casatorie (numele de fata), "
+        "nume_sotie_dupa = numele de familie al sotiei DUPA casatorie, prenume_sotie, cnp_sotie. "
+        "Doar numele de familie in campurile nume_*, fara prenume. Daca rubrica 'dupa casatorie' "
+        "e goala sau lipseste, nume_*_dupa = null. data_casatoriei = data incheierii casatoriei. "
+        "Campurile generale nume/prenume/cnp raman null (actul are doi titulari). "
+        "emitent = serviciul de stare civila."
     ),
     "sentinta_divort": (
-        "Sentinta de divort. nume_reclamant si nume_parat sunt cele doua parti; cnp_reclamant "
+        "Sentinta de divort. nume_reclamant si nume_parat sunt cele doua parti (nume complet); "
+        "daca sentinta spune ce nume de familie va purta fiecare dupa divort (ex: 'reclamanta va reveni la "
+        "numele anterior POPESCU'), completeaza nume_dupa_divort_reclamant / nume_dupa_divort_parat, altfel null; cnp_reclamant "
         "si cnp_parat doar daca apar pe act, altfel null. "
         "data_ramanerii_definitive = data la care sentinta a ramas definitiva (verifica "
         "mentiunea 'definitiva' sau stampila de ramanere definitiva). emitent = instanta. "

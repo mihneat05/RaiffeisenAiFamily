@@ -48,9 +48,13 @@ def din_p2(d: dict) -> dict:
                    mostenitori=d.get("mostenitori") or [])
 
     elif tip == "certificat_casatorie":
-        out.update(sot1=_persoana(d.get("nume_sot"), d.get("cnp_sot")),
-                   sot2=_persoana(d.get("nume_sotie"), d.get("cnp_sotie")),
-                   data_casatoriei=d.get("data_casatoriei"))
+        # P2 citește separat numele de familie ÎNAINTE / DUPĂ căsătorie (vezi schemas.py)
+        sot1 = _persoana(d.get("nume_sot"), d.get("cnp_sot"), d.get("prenume_sot"))
+        sot2 = _persoana(d.get("nume_sotie"), d.get("cnp_sotie"), d.get("prenume_sotie"))
+        for s, dupa in ((sot1, d.get("nume_sot_dupa")), (sot2, d.get("nume_sotie_dupa"))):
+            if dupa:
+                s["nume_dupa_casatorie"] = dupa
+        out.update(sot1=sot1, sot2=sot2, data_casatoriei=d.get("data_casatoriei"))
 
     elif tip == "sentinta_divort":
         definitiva = d.get("data_ramanerii_definitive")
@@ -59,6 +63,9 @@ def din_p2(d: dict) -> dict:
                    definitiva=definitiva is not None,
                    sot1=_persoana(d.get("nume_reclamant"), d.get("cnp_reclamant")),
                    sot2=_persoana(d.get("nume_parat"), d.get("cnp_parat")))
+        for k, dupa in (("sot1", d.get("nume_dupa_divort_reclamant")), ("sot2", d.get("nume_dupa_divort_parat"))):
+            if dupa:
+                out[k]["nume_dupa_divort"] = dupa
 
     elif tip == "procura":
         out.update(mandant=_persoana(d.get("nume_mandant"), d.get("cnp_mandant")),

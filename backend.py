@@ -115,6 +115,18 @@ def find_branches(locatie):
         return {"eroare": "fara_conexiune", "mesaj": "Nu pot căuta sucursalele acum. Le găsești pe raiffeisen.ro sau la *2000."}
 
 
+def find_branches_coords(lat, lon, eticheta):
+    """Sucursale lângă coordonatele detectate în browser (GPS sau aproximativ după IP)."""
+    if os.getenv("USE_MOCK") == "1":
+        return find_branches(eticheta)
+    try:
+        from branches import find_nearest_coords
+        return find_nearest_coords(lat, lon, eticheta)
+    except Exception as e:
+        print(f"[backend] căutarea după coordonate a eșuat: {e!r}")
+        return {"eroare": "fara_conexiune", "mesaj": "Nu pot căuta sucursalele acum. Le găsești pe raiffeisen.ro sau la *2000."}
+
+
 def find_branches_from_address(adresa):
     """Sucursale lângă domiciliul citit de pe buletin (P2, câmpul `adresa`)."""
     if os.getenv("USE_MOCK") == "1":
