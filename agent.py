@@ -296,15 +296,12 @@ Reguli:
 Data de azi: {date.today().isoformat()}."""
 
 
-def chat(s: Session, user_text: str, uploaded=None) -> str:
-    """Un mesaj al clientului -> răspunsul agentului. `uploaded` = căile fișierelor încărcate acum."""
-    if uploaded:
-        user_text = (user_text or "Am încărcat actele.") + "\n[Fișiere încărcate: " + ", ".join(uploaded) + "]"
-    s.messages.append({"role": "user", "content": user_text})
+def _loop(s: Session, messages: list, system: str, tools: list) -> str:
+    """Bucla de tool calling: LLM -> tool-uri -> LLM ... până răspunde cu text."""
     for _ in range(15):  # limită de siguranță
-        resp = client.messages.create(model=MODEL, max_tokens=1500, system=SYSTEM,
-                                      tools=TOOLS, messages=s.messages)
-        s.messages.append({"role": "assistant", "content": resp.content})
+        resp = client.messages.create(model=MODEL, max_tokens=1500, system=system,
+                                      tools=tools, messages=messages)
+        messages.append({"role": "assistant", "content": resp.content})
         if resp.stop_reason != "tool_use":
             return "".join(b.text for b in resp.content if b.type == "text")
         results = []
@@ -318,8 +315,72 @@ def chat(s: Session, user_text: str, uploaded=None) -> str:
             txt = mask_cnp(json.dumps(out, ensure_ascii=False, default=str))  # GDPR: CNP mascat spre LLM
             print(f"  [tool] {b.name}({b.input}) -> {txt[:150]}")
             results.append({"type": "tool_result", "tool_use_id": b.id, "content": txt})
-        s.messages.append({"role": "user", "content": results})
+        messages.append({"role": "user", "content": results})
     return "Îmi pare rău, a apărut o problemă. Te rog încearcă din nou."
+
+
+def chat(s: Session, user_text: str, uploaded=None) -> str:
+    """Modul consolă: un mesaj al clientului -> răspunsul agentului (agentul citește și actele)."""
+    if uploaded:
+        user_text = (user_text or "Am încărcat actele.") + "\n[Fișiere încărcate: " + ", ".join(uploaded) + "]"
+    s.messages.append({"role": "user", "content": user_text})
+    return _loop(s, s.messages, SYSTEM, TOOLS)
+
+
+# ---------------------------------------------------------------- legătura cu frontendul (P4)
+# În interfață, actele se încarcă în panoul din stânga și le citește/verifică frontendul
+# (read_document P2 + validare P3). Agentul primește starea și doar conversează.
+P4_TO_FLUX = {"deces": "deces_succesiune", "casatorie_divort": "casatorie_divort", "imputernicire": "imputernicire"}
+FLUX_TO_P4 = {v: k for k, v in P4_TO_FLUX.items()}
+SCENARIU_IMPLICIT = {"deces_succesiune": "ridicare_bani",
+                     "casatorie_divort": "actualizare_nume_casatorie",
+                     "imputernicire": "procura_notariala"}
+CHAT_TOOLS = [t for t in TOOLS if t["name"] in ("get_flow_info", "select_scenario")]
+
+SYSTEM_UI = SYSTEM.replace(
+    "4. Când clientul încarcă fișiere, apelezi read_uploaded_document pentru fiecare, apoi check_documents.",
+    "4. Actele le încarcă clientul în panoul din STÂNGA (după ce bifează acordul). Nu le citești tu: "
+    "primești mai jos, la STAREA DOSARULUI, ce a citit și verificat aplicația. Dacă nu a încărcat nimic, "
+    "spune-i unde le încarcă. Checklist-ul și verdictul apar și în dreapta, nu le repeta pe toate. "
+    "verdict_aplicatie.status: ok = gata (ești pregătit), warn = de verificat, fail = lipsește ceva sau e greșit.")
+
+
+def _istoric(history, message):
+    """Istoricul din UI -> mesaje pentru LLM (alternanță user/assistant, începe cu user)."""
+    msgs = []
+    for m in history or []:
+        role, text = m.get("role"), str(m.get("content") or "").strip()
+        if role not in ("user", "assistant") or not text:
+            continue
+        if not msgs and role == "assistant":
+            continue  # mesajul de bun venit
+        if msgs and msgs[-1]["role"] == role:
+            msgs[-1]["content"] += "\n\n" + text
+        else:
+            msgs.append({"role": role, "content": text})
+    if not msgs or msgs[-1]["role"] != "user":
+        msgs.append({"role": "user", "content": message})
+    msgs = msgs[-20:]
+    while msgs and msgs[0]["role"] != "user":
+        msgs = msgs[1:]
+    return msgs
+
+
+def agent_turn(message: str, ctx: dict) -> dict:
+    """Pentru app.py (P4): ctx = {"event", "docs", "verdict", "history"} -> {"reply", "event"}."""
+    s = Session()
+    s.flux = P4_TO_FLUX.get(ctx.get("event"))
+    s.scenariu = SCENARIU_IMPLICIT.get(s.flux)
+    stare = {
+        "situatie_aleasa": KB[s.flux]["nume"] if s.flux in KB else "încă nealeasă",
+        "acte_incarcate": [{"act": d.get("label"), "status": d.get("status"), "probleme": d.get("reasons", [])}
+                           for d in ctx.get("docs") or []],
+        "verdict_aplicatie": ctx.get("verdict"),
+    }
+    system = SYSTEM_UI + "\n\nSTAREA DOSARULUI (din aplicație):\n" + mask_cnp(
+        json.dumps(stare, ensure_ascii=False, default=str))
+    reply = _loop(s, _istoric(ctx.get("history"), message), system, CHAT_TOOLS)
+    return {"reply": reply, "event": FLUX_TO_P4.get(s.flux)}
 
 
 if __name__ == "__main__":

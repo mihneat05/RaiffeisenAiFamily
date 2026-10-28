@@ -3,4 +3,5 @@ pydantic
 pymupdf
 pillow
 python-dotenv
-streamlit
+streamlit>=1.36
+fpdf2>=2.7

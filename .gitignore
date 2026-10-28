@@ -13,3 +13,6 @@ __pycache__/
 uploads/
 *.log
 .DS_Store
+.pytest_cache/
+p2_out.txt
+date_test/rezultate_obtinute.json
