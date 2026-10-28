@@ -14,32 +14,71 @@ import json
 import math
 import re
 import sys
+from pathlib import Path
 import urllib.parse
 import urllib.request
 from functools import lru_cache
 
 USER_AGENT = "RaiffeisenFamilyAgent-hackathon/1.0 (prototip studentesc)"  # cerut de politica Nominatim
 NOMINATIM = "https://nominatim.openstreetmap.org/search"
-OVERPASS = ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter"]
+PHOTON = "https://photon.komoot.io/api/"
+OVERPASS = ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter",
+            "https://maps.mail.ru/osm/tools/overpass/api/interpreter"]
 RAZE_KM = (5, 15, 50)
+DATA_FILE = Path(__file__).parent / "sucursale_osm.json"   # lista descărcată o dată cu: python branches.py --update
 TIMEOUT = 12
 
 
-def _get_json(url, data=None):
-    req = urllib.request.Request(url, data=data, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
-        return json.loads(r.read().decode("utf-8"))
+def _get_json(url, data=None, timeout=None):
+    """GET/POST -> JSON. Folosim httpx (vine cu anthropic): are propriile certificate SSL (certifi),
+    deci merge și pe Windows, unde urllib dă des „CERTIFICATE_VERIFY_FAILED”."""
+    try:
+        import httpx
+    except ImportError:
+        req = urllib.request.Request(url, data=data, headers={"User-Agent": USER_AGENT})
+        with urllib.request.urlopen(req, timeout=timeout or TIMEOUT) as r:
+            return json.loads(r.read().decode("utf-8"))
+    with httpx.Client(timeout=timeout or TIMEOUT, headers={"User-Agent": USER_AGENT}, follow_redirects=True) as c:
+        if data:
+            r = c.post(url, content=data, headers={"Content-Type": "application/x-www-form-urlencoded"})
+        else:
+            r = c.get(url)
+        r.raise_for_status()
+        return r.json()
+
+
+def _nominatim(text):
+    q = urllib.parse.urlencode({"q": text, "format": "json", "limit": 1, "countrycodes": "ro", "accept-language": "ro"})
+    res = _get_json(f"{NOMINATIM}?{q}")
+    return (float(res[0]["lat"]), float(res[0]["lon"]), res[0].get("display_name", text)) if res else None
+
+
+def _photon(text):
+    """Al doilea serviciu de geocodare (tot date OpenStreetMap), dacă Nominatim e blocat sau ocupat."""
+    q = urllib.parse.urlencode({"q": text, "limit": 1, "bbox": "20.2,43.6,29.7,48.3"})  # doar România
+    res = _get_json(f"{PHOTON}?{q}").get("features") or []
+    if not res:
+        return None
+    lon, lat = res[0]["geometry"]["coordinates"]
+    p = res[0].get("properties", {})
+    nume = ", ".join(x for x in (p.get("name"), p.get("district"), p.get("city"), p.get("country")) if x)
+    return float(lat), float(lon), nume or text
 
 
 @lru_cache(maxsize=128)
 def geocode(text):
-    """Text liber -> (lat, lon, nume afișat) sau None. Căutăm doar în România."""
-    q = urllib.parse.urlencode({"q": text, "format": "json", "limit": 1, "countrycodes": "ro",
-                                "accept-language": "ro"})
-    res = _get_json(f"{NOMINATIM}?{q}")
-    if not res:
-        return None
-    return float(res[0]["lat"]), float(res[0]["lon"]), res[0].get("display_name", text)
+    """Text liber -> (lat, lon, nume afișat) sau None. Încearcă Nominatim, apoi Photon."""
+    erori = []
+    for f in (_nominatim, _photon):
+        try:
+            r = f(text)
+            if r:
+                return r
+        except Exception as e:
+            erori.append(f"{f.__name__}: {e}")
+    if len(erori) == 2:
+        raise ConnectionError(" | ".join(erori))
+    return None
 
 
 def _overpass(lat, lon, raza_km):
@@ -105,24 +144,106 @@ def _sucursala(el, lat, lon):
     }
 
 
+# ------------------------------------------------------------------ lista locală (recomandat la demo)
+def update(timeout=180):
+    """Descarcă O DATĂ toate unitățile Raiffeisen din România (OpenStreetMap) în sucursale_osm.json."""
+    query = f"""[out:json][timeout:{timeout}];
+area["ISO3166-1"="RO"][admin_level=2]->.ro;
+(
+  nwr["amenity"="bank"]["name"~"Raiffeisen",i](area.ro);
+  nwr["amenity"="bank"]["brand"~"Raiffeisen",i](area.ro);
+);
+out center tags;"""
+    data = urllib.parse.urlencode({"data": query}).encode()
+    elemente, erori = None, []
+    for url in OVERPASS:
+        try:
+            elemente = _get_json(url, data, timeout=timeout + 20).get("elements", [])
+            break
+        except Exception as e:
+            erori.append(f"{url}: {e}")
+            print("  server indisponibil, încerc următorul:", e)
+    if elemente is None:
+        raise ConnectionError(" | ".join(erori))
+    lista, vazute = [], set()
+    for el in elemente:
+        t = el.get("tags", {})
+        lat = el.get("lat") or el.get("center", {}).get("lat")
+        lon = el.get("lon") or el.get("center", {}).get("lon")
+        if lat is None or (round(lat, 4), round(lon, 4)) in vazute:
+            continue
+        vazute.add((round(lat, 4), round(lon, 4)))
+        lista.append({"tags": {k: v for k, v in t.items() if k in (
+            "name", "brand", "addr:street", "addr:housenumber", "addr:city", "addr:town", "addr:village",
+            "opening_hours", "phone", "contact:phone")}, "lat": lat, "lon": lon})
+    DATA_FILE.write_text(json.dumps(lista, ensure_ascii=False, indent=0), encoding="utf-8")
+    return len(lista)
+
+
+@lru_cache(maxsize=1)
+def _lista_locala():
+    if not DATA_FILE.exists():
+        return None
+    try:
+        return json.loads(DATA_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+
+def _norm(x):
+    import unicodedata
+    return unicodedata.normalize("NFKD", str(x or "")).encode("ascii", "ignore").decode().lower()
+
+
+def _dupa_oras(text, lista):
+    """Fără internet: potrivim orașul scris de client cu orașul din adresa sucursalelor."""
+    cuvinte = {w for w in re.split(r"[\s,.-]+", _norm(text)) if len(w) > 2}
+    gasite = []
+    for el in lista:
+        t = el["tags"]
+        oras = {w for w in re.split(r"[\s,.-]+", _norm(t.get("addr:city") or t.get("addr:town") or t.get("addr:village"))) if w}
+        if oras and cuvinte and oras <= cuvinte | oras and (oras & cuvinte):
+            s = _sucursala(el, el["lat"], el["lon"])
+            s["distance"], s["distance_km"] = "în oraș", 0
+            gasite.append(s)
+    return gasite[:3]
+
+
+def _din_lista(lat, lon, lista):
+    toate = [s for s in (_sucursala(el, lat, lon) for el in lista) if s]
+    unice = {}
+    for s in sorted(toate, key=lambda s: (s["distance_km"], s["hours"].startswith("program:"))):
+        unice.setdefault((s["name"], s["address"]), s)
+    top = sorted(unice.values(), key=lambda s: s["distance_km"])[:3]
+    aproape = [s for s in top if s["distance_km"] <= RAZE_KM[-1]]
+    return aproape or top[:1]   # dacă nu e nimic pe 50 km, arătăm măcar cea mai apropiată
+
+
 @lru_cache(maxsize=128)
 def _cauta(text):
-    loc = geocode(text)
+    lista = _lista_locala()
+    try:
+        loc = geocode(text)
+    except Exception:
+        if lista:  # fără internet, dar avem lista: căutăm după oraș
+            gasite = _dupa_oras(text, lista)
+            if gasite:
+                return {"locatie": {"text": text, "gasit": f"{text} (căutare după oraș, fără hartă)"},
+                        "sucursale": gasite, "sursa": "listă locală OpenStreetMap"}
+        raise
     if not loc:
         return {"eroare": "locatie_negasita", "mesaj": f"Nu am găsit locația „{text}”. Încearcă orașul și cartierul."}
     lat, lon, nume = loc
-    for raza in RAZE_KM:
-        gasite = [s for s in (_sucursala(e, lat, lon) for e in _overpass(lat, lon, raza)) if s]
-        # aceeași unitate poate apărea de 2 ori în OSM (punct + clădire) -> deduplicăm după nume+adresă
-        unice = {}
-        for s in sorted(gasite, key=lambda s: (s["distance_km"], s["hours"].startswith("program:"))):
-            unice.setdefault((s["name"], s["address"]), s)  # păstrăm varianta cu mai multe informații
-        if unice:
-            top = sorted(unice.values(), key=lambda s: s["distance_km"])[:3]
-            return {"locatie": {"text": text, "gasit": nume, "lat": lat, "lon": lon, "raza_km": raza},
-                    "sucursale": top, "sursa": "OpenStreetMap (poate fi incomplet; programul se verifică pe raiffeisen.ro)"}
-    return {"locatie": {"text": text, "gasit": nume, "lat": lat, "lon": lon},
-            "sucursale": [], "mesaj": f"Nu am găsit sucursale Raiffeisen pe o rază de {RAZE_KM[-1]} km."}
+    info = {"text": text, "gasit": nume, "lat": lat, "lon": lon}
+    if lista:  # varianta recomandată: distanțe calculate local, fără Overpass
+        top = _din_lista(lat, lon, lista)
+        return {"locatie": info, "sucursale": top, "sursa": "listă locală OpenStreetMap (programul se verifică pe raiffeisen.ro)"}
+    for raza in RAZE_KM:  # fără listă locală: căutare live (serverele Overpass pot fi ocupate)
+        top = _din_lista(lat, lon, _overpass(lat, lon, raza))
+        if top:
+            return {"locatie": dict(info, raza_km=raza), "sucursale": top,
+                    "sursa": "OpenStreetMap (poate fi incomplet; programul se verifică pe raiffeisen.ro)"}
+    return {"locatie": info, "sucursale": [], "mesaj": f"Nu am găsit sucursale Raiffeisen pe o rază de {RAZE_KM[-1]} km."}
 
 
 def find_nearest(text):
@@ -211,5 +332,9 @@ def find_nearest_from_address(adresa):
 if __name__ == "__main__":
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
-    print(json.dumps(find_nearest(" ".join(sys.argv[1:]) or "Piata Victoriei, Bucuresti"),
-                     ensure_ascii=False, indent=2))
+    if sys.argv[1:2] == ["--update"]:
+        print("Descarc lista sucursalelor Raiffeisen din OpenStreetMap (poate dura 1-2 minute)...")
+        print(f"Gata: {update()} unități salvate în {DATA_FILE.name}")
+    else:
+        print(json.dumps(find_nearest(" ".join(sys.argv[1:]) or "Piata Victoriei, Bucuresti"),
+                         ensure_ascii=False, indent=2))

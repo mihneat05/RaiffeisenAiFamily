@@ -1,0 +1,2651 @@
+[
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.4275777,
+"lon": 28.0284199
+},
+{
+"tags": {
+"addr:city": "Arad",
+"addr:housenumber": "Raiffeisen Bank Nr.1",
+"addr:street": "Strada Unirii",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.1716715,
+"lon": 21.3162852
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.1707599,
+"lon": 21.3536065
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.1628663,
+"lon": 27.582673
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "94",
+"addr:street": "Drumul Taberei",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.4188242,
+"lon": 26.0197019
+},
+{
+"tags": {
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-17:00"
+},
+"lat": 44.4189038,
+"lon": 26.0427294
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.1795794,
+"lon": 27.5694883
+},
+{
+"tags": {
+"addr:city": "Caracal",
+"addr:housenumber": "4A",
+"addr:street": "Strada Parângului",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.1134504,
+"lon": 24.3486194
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "21",
+"addr:street": "Șoseaua Pipera",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-13:00,13:30-17:30"
+},
+"lat": 44.4795659,
+"lon": 26.0978289
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "2",
+"addr:street": "Piața Dorobanților",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.460463,
+"lon": 26.094704
+},
+{
+"tags": {
+"addr:street": "Bulevardul Alexandru cel Bun",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.1619952,
+"lon": 27.5662579
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.6460677,
+"lon": 26.2431295
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.2708459,
+"lon": 27.9739158
+},
+{
+"tags": {
+"addr:housenumber": "319",
+"addr:street": "Calea Călărașilor",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.2664625,
+"lon": 27.971384
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-17:30",
+"phone": "+40-265-703780"
+},
+"lat": 46.5355814,
+"lon": 24.5841119
+},
+{
+"tags": {
+"addr:city": "Eforie Nord",
+"addr:street": "Bulevardul Republicii",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.0661721,
+"lon": 28.6332977
+},
+{
+"tags": {
+"name": "Bank Raiffeisen"
+},
+"lat": 44.1893993,
+"lon": 28.6342735
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.1754687,
+"lon": 23.9224951
+},
+{
+"tags": {
+"addr:city": "Ploiești",
+"addr:housenumber": "1",
+"addr:street": "Strada Constantin Dobrogeanu Gherea",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.941313,
+"lon": 26.0256568
+},
+{
+"tags": {
+"addr:city": "Timișoara",
+"addr:housenumber": "32",
+"addr:street": "Calea Aradului",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.7740376,
+"lon": 21.2223525
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "4",
+"addr:street": "Bulevardul Libertății",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.4224253,
+"lon": 26.0909914
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "304",
+"addr:street": "Șoseaua Mihai Bravu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-17:30"
+},
+"lat": 44.4241354,
+"lon": 26.136592
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.1631492,
+"lon": 24.3473169
+},
+{
+"tags": {
+"addr:city": "Sibiu",
+"addr:housenumber": "11",
+"addr:street": "Strada Semaforului",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.7845807,
+"lon": 24.1714569
+},
+{
+"tags": {
+"addr:city": "Sibiu",
+"addr:housenumber": "10",
+"addr:street": "Piața Aurel Vlaicu",
+"name": "Raiffeisenbank"
+},
+"lat": 45.7830033,
+"lon": 24.1487857
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.1744171,
+"lon": 27.5481247
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.7007736,
+"lon": 27.1826628
+},
+{
+"tags": {
+"addr:housenumber": "10",
+"addr:street": "Bulevardul 1 Decembrie 1918",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.1790264,
+"lon": 28.6363172
+},
+{
+"tags": {
+"addr:city": "Sibiu",
+"addr:housenumber": "2",
+"addr:street": "Strada 9 Mai",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.7993595,
+"lon": 24.1507229
+},
+{
+"tags": {
+"name": "Raiffeisen"
+},
+"lat": 44.4216577,
+"lon": 24.3840355
+},
+{
+"tags": {
+"addr:city": "București",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-17:00"
+},
+"lat": 44.4136046,
+"lon": 26.1643635
+},
+{
+"tags": {
+"addr:city": "Deva",
+"addr:street": "Bulevardul Iuliu Maniu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.8814526,
+"lon": 22.9026011
+},
+{
+"tags": {
+"name": "Raiffeisen Bank"
+},
+"lat": 45.8651813,
+"lon": 22.907538
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.0703501,
+"lon": 23.5573675
+},
+{
+"tags": {
+"addr:city": "Salonta",
+"addr:housenumber": "5",
+"addr:street": "Strada Republicii",
+"brand": "Raiffeisenbank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.8025316,
+"lon": 21.6618223
+},
+{
+"tags": {
+"addr:city": "București",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-17:30"
+},
+"lat": 44.4428464,
+"lon": 26.1560259
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "73",
+"addr:street": "Bulevardul Iuliu Maniu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.4336857,
+"lon": 26.0126824
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "163",
+"addr:street": "Calea Griviței",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-13:00,13:30-17:30"
+},
+"lat": 44.4468429,
+"lon": 26.0771397
+},
+{
+"tags": {
+"addr:city": "Alexandria",
+"addr:street": "Strada Aviator Colfescu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 43.9682877,
+"lon": 25.3295991
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.5551318,
+"lon": 25.8902225
+},
+{
+"tags": {
+"addr:street": "Bulevardul Bucureștii Noi",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-17:30"
+},
+"lat": 44.4827995,
+"lon": 26.0413133
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "236",
+"addr:street": "Calea Griviței",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-13:00, Mo-Fr 13:30-17:30; Sa,Su off"
+},
+"lat": 44.4704548,
+"lon": 26.0509751
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Sa 08:00-22:00; Su 09:00-19:00",
+"phone": "+40-265-703720"
+},
+"lat": 46.5938632,
+"lon": 24.6232819
+},
+{
+"tags": {
+"addr:city": "Târgu Mureș",
+"addr:housenumber": "1",
+"addr:street": "Strada Bartók Béla",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-17:00",
+"phone": "+40-265-703760"
+},
+"lat": 46.5446189,
+"lon": 24.5604707
+},
+{
+"tags": {
+"addr:city": "Sfântu Gheorghe",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.8634315,
+"lon": 25.8089829
+},
+{
+"tags": {
+"addr:city": "Cluj-Napoca",
+"addr:housenumber": "16",
+"addr:street": "Piața Unirii",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.7697547,
+"lon": 23.5885946
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.408587,
+"lon": 26.0773545
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "4A",
+"addr:street": "Strada Grigore Alexandrescu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-13:00, Mo-Fr 13:30-17:30; Sa,Su off"
+},
+"lat": 44.4506865,
+"lon": 26.0880865
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 43.7476294,
+"lon": 24.8686369
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.657552,
+"lon": 23.5654609
+},
+{
+"tags": {
+"addr:housenumber": "1",
+"addr:street": "Strada Avram Iancu",
+"brand": "Raiffeisenbank",
+"name": "Raiffeisenbank"
+},
+"lat": 45.9760591,
+"lon": 24.627472
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.6109205,
+"lon": 22.9518344
+},
+{
+"tags": {
+"addr:city": "Iași",
+"addr:housenumber": "3E",
+"addr:street": "Strada Palat",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"phone": "+40 213063002"
+},
+"lat": 47.1553111,
+"lon": 27.5861144
+},
+{
+"tags": {
+"addr:street": "Strada Matei Basarab",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 43.816796,
+"lon": 28.5838832
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.1580212,
+"lon": 28.6296847
+},
+{
+"tags": {
+"name": "Raiffeisen"
+},
+"lat": 44.3456427,
+"lon": 28.0311684
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.8649004,
+"lon": 24.8677692
+},
+{
+"tags": {
+"addr:city": "Arad",
+"addr:street": "Calea Aurel Vlaicu",
+"brand": "Raiffeisenbank",
+"name": "Raiffeisenbank"
+},
+"lat": 46.1943276,
+"lon": 21.3036447
+},
+{
+"tags": {
+"addr:city": "Sighișoara",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-17:00"
+},
+"lat": 46.2208299,
+"lon": 24.7950296
+},
+{
+"tags": {
+"name": "ATM - Raiffeisen Bank - Eurotiket"
+},
+"lat": 44.4639267,
+"lon": 26.1407029
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "56",
+"addr:street": "Șoseaua Olteniței",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.3984716,
+"lon": 26.1081219
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "426-426A",
+"addr:street": "Șoseaua Colentina",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.4744581,
+"lon": 26.1614551
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "24",
+"addr:street": "Șoseaua Colentina",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.4614001,
+"lon": 26.1334735
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "12",
+"addr:street": "Calea Crângași",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.4539312,
+"lon": 26.0523709
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "16",
+"addr:street": "Bulevardul Decebal",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-17:30"
+},
+"lat": 44.4293869,
+"lon": 26.1348599
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "2",
+"addr:street": "Șoseaua Iancului",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-13:00,13:30-17:00"
+},
+"lat": 44.441091,
+"lon": 26.134439
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "109",
+"addr:street": "Bulevardul Ion Mihalache",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-13:00,13:30-17:30"
+},
+"lat": 44.4609128,
+"lon": 26.0737976
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-13:00,13:30-17:30"
+},
+"lat": 44.4439485,
+"lon": 26.1191157
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:street": "Bulevardul Alexandru Obregia",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.3868591,
+"lon": 26.1172497
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "19",
+"addr:street": "Strada Piața Amzei",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-17:30"
+},
+"lat": 44.4445555,
+"lon": 26.095727
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "9",
+"addr:street": "Bulevardul Profesor Dimitrie Pompeiu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.4827293,
+"lon": 26.1206521
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "20",
+"addr:street": "Șoseaua Vergului",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Su 09:00-19:00",
+"phone": "+40 21 306 3002"
+},
+"lat": 44.4379163,
+"lon": 26.1851154
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "1",
+"addr:street": "Piața Alba Iulia",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-17:30"
+},
+"lat": 44.426586,
+"lon": 26.129179
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "16",
+"addr:street": "Bulevardul Iuliu Maniu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-17:30"
+},
+"lat": 44.4346073,
+"lon": 26.0375049
+},
+{
+"tags": {
+"addr:city": "Cluj-Napoca",
+"addr:street": "Strada Cuza Vodă",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.7734343,
+"lon": 23.5926063
+},
+{
+"tags": {
+"addr:city": "Cluj-Napoca",
+"addr:housenumber": "2",
+"addr:street": "Strada Aurel Vlaicu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.7781219,
+"lon": 23.6159787
+},
+{
+"tags": {
+"addr:housenumber": "73",
+"addr:street": "Strada Louis Pasteur",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.7550319,
+"lon": 23.5788573
+},
+{
+"tags": {
+"addr:housenumber": "29",
+"addr:street": "Strada Nicolae Bălcescu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.0913425,
+"lon": 21.6945783
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.8446699,
+"lon": 26.16909
+},
+{
+"tags": {
+"addr:city": "Timișoara",
+"addr:housenumber": "10",
+"addr:street": "Strada Coriolan Brediceanu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00 - 17:30; ATM: 24/7"
+},
+"lat": 45.7573448,
+"lon": 21.2219729
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "300",
+"addr:street": "Șoseaua Pantelimon",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.442165,
+"lon": 26.1665546
+},
+{
+"tags": {
+"addr:city": "Cluj-Napoca",
+"addr:housenumber": "8",
+"addr:street": "Calea Someșeni",
+"brand": "Raiffeisenbank",
+"name": "Raiffeisenbank",
+"opening_hours": "Mo-Sa 09:00 - 21:30; Su 09:00 - 19:00; PH off"
+},
+"lat": 46.7778394,
+"lon": 23.6491589
+},
+{
+"tags": {
+"addr:city": "Cluj-Napoca",
+"addr:housenumber": "142",
+"addr:street": "Bulevardul 1 Decembrie 1918",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Sa 09:00-21:00; Su 09:00-19:00"
+},
+"lat": 46.758275,
+"lon": 23.5395611
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.1561389,
+"lon": 27.5892401
+},
+{
+"tags": {
+"addr:city": "Breaza",
+"addr:street": "Strada Republicii",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.1763781,
+"lon": 25.67047
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.4316184,
+"lon": 26.103006
+},
+{
+"tags": {
+"name": "Raiffeisen"
+},
+"lat": 44.1650049,
+"lon": 28.4837324
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "197",
+"addr:street": "Șoseaua Chitilei",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.4836629,
+"lon": 26.0261009
+},
+{
+"tags": {
+"addr:city": "Pitești",
+"addr:street": "Strada Exercițiu",
+"name": "Raiffeisen",
+"phone": "+40 248703841"
+},
+"lat": 44.8460084,
+"lon": 24.8765132
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.7005443,
+"lon": 25.4474498
+},
+{
+"tags": {
+"addr:city": "Sânnicolau Mare",
+"addr:housenumber": "12",
+"addr:street": "Strada Republicii",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-17:30"
+},
+"lat": 46.0711824,
+"lon": 20.6253348
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.0007511,
+"lon": 26.1377021
+},
+{
+"tags": {
+"addr:city": "Timișoara",
+"addr:housenumber": "45",
+"addr:street": "Calea Sever Bocu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.7763915,
+"lon": 21.2327343
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.9321279,
+"lon": 26.3703502
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.1348403,
+"lon": 24.4998696
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.1375077,
+"lon": 24.4939121
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.1413391,
+"lon": 24.5060298
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.1592799,
+"lon": 27.587936
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.3004216,
+"lon": 25.2898062
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.6726914,
+"lon": 28.0597719
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.2571656,
+"lon": 27.9608411
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.2890551,
+"lon": 21.8886894
+},
+{
+"tags": {
+"addr:city": "Petroșani",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.4163896,
+"lon": 23.3722571
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.9285902,
+"lon": 23.8905998
+},
+{
+"tags": {
+"addr:city": "Hunedoara",
+"addr:housenumber": "11",
+"addr:street": "Bulevardul Dacia",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.759059,
+"lon": 22.9081851
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.808973,
+"lon": 25.0824953
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-17:30"
+},
+"lat": 44.443994,
+"lon": 26.118995
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "23",
+"addr:street": "Bulevardul Nicolae Bălcescu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-13:00,13:30-17:30"
+},
+"lat": 44.438911,
+"lon": 26.100215
+},
+{
+"tags": {
+"addr:city": "Cluj-Napoca",
+"addr:housenumber": "2",
+"addr:street": "Strada Constantin Brâncuși",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-13:00,13:30-17:30"
+},
+"lat": 46.7673117,
+"lon": 23.6013888
+},
+{
+"tags": {
+"addr:city": "Făgăraș",
+"addr:housenumber": "27",
+"addr:street": "Piața Republicii",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.8445402,
+"lon": 24.9708712
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "41",
+"addr:street": "Șoseaua Ștefan cel Mare",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-17:30"
+},
+"lat": 44.4503956,
+"lon": 26.1245136
+},
+{
+"tags": {
+"addr:city": "Lugoj",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.6911448,
+"lon": 21.9032548
+},
+{
+"tags": {
+"addr:city": "Câmpina",
+"addr:housenumber": "48",
+"addr:street": "Bulevardul Carol I",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.124473,
+"lon": 25.7350624
+},
+{
+"tags": {
+"addr:city": "Câmpina",
+"addr:housenumber": "66",
+"addr:street": "Bulevardul Carol I",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.1271016,
+"lon": 25.7331957
+},
+{
+"tags": {
+"addr:city": "Popești-Leordeni",
+"addr:housenumber": "23",
+"addr:street": "Șoseaua Olteniței",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-13:00,13:30-17:30"
+},
+"lat": 44.3801347,
+"lon": 26.1670757
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.3484128,
+"lon": 25.5479585
+},
+{
+"tags": {
+"addr:city": "Gherla",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-13:00, Mo-Fr 13:30-17:00"
+},
+"lat": 47.0289062,
+"lon": 23.9080452
+},
+{
+"tags": {
+"addr:city": "Băbeni",
+"addr:street": "Strada Calea lui Traian",
+"name": "Raiffeisen BANK"
+},
+"lat": 44.9713697,
+"lon": 24.2430651
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "327",
+"addr:street": "Calea Rahovei",
+"brand": "Raiffeisen Bank",
+"contact:phone": "+4021 3702160",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-17:30"
+},
+"lat": 44.4064801,
+"lon": 26.0647109
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.3816392,
+"lon": 23.8573469
+},
+{
+"tags": {
+"addr:city": "Băicoi",
+"name": "Raiffeisen"
+},
+"lat": 45.0338978,
+"lon": 25.8744042
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.6328403,
+"lon": 22.6729493
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.6414652,
+"lon": 22.6501626
+},
+{
+"tags": {
+"name": "Raiffeisen Bank"
+},
+"lat": 46.5235434,
+"lon": 21.5189127
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-13:00, 13:30-17:00"
+},
+"lat": 46.3622406,
+"lon": 25.801624
+},
+{
+"tags": {
+"brand": "Raiffeisenbank",
+"name": "Raiffeisenbank"
+},
+"lat": 45.2721291,
+"lon": 25.0449927
+},
+{
+"tags": {
+"addr:city": "Liești",
+"addr:street": "DN 25",
+"name": "Raiffeisenbank"
+},
+"lat": 45.6307379,
+"lon": 27.5343434
+},
+{
+"tags": {
+"addr:city": "Craiova",
+"addr:housenumber": "141",
+"addr:street": "Calea București",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-13:00,13:30-17:30; Sa-Su off",
+"phone": "0251703780"
+},
+"lat": 44.3138197,
+"lon": 23.837067
+},
+{
+"tags": {
+"addr:city": "Craiova",
+"addr:housenumber": "83",
+"addr:street": "Calea București",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 10:00-18:30; Sa-Su off",
+"phone": "0213063002"
+},
+"lat": 44.31818,
+"lon": 23.8110991
+},
+{
+"tags": {
+"addr:city": "Timișoara",
+"addr:housenumber": "20",
+"addr:street": "Strada Arieș",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-17:30"
+},
+"lat": 45.7391849,
+"lon": 21.2398818
+},
+{
+"tags": {
+"addr:city": "Craiova",
+"addr:housenumber": "8",
+"addr:street": "Bulevardul Nicolae Romanescu",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.2998894,
+"lon": 23.7986001
+},
+{
+"tags": {
+"addr:city": "Craiova",
+"addr:housenumber": "8",
+"addr:street": "Strada Sfântul Dumitru",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.3152918,
+"lon": 23.7934022
+},
+{
+"tags": {
+"brand": "Raiffeisenbank",
+"name": "Raiffeisenbank"
+},
+"lat": 45.6443108,
+"lon": 25.6232387
+},
+{
+"tags": {
+"addr:city": "Vatra Dornei",
+"addr:housenumber": "30",
+"addr:street": "Strada Mihai Eminescu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-17:00"
+},
+"lat": 47.3474992,
+"lon": 25.3551501
+},
+{
+"tags": {
+"addr:city": "Craiova",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.3229689,
+"lon": 23.7934718
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.6992298,
+"lon": 27.1828953
+},
+{
+"tags": {
+"addr:city": "București",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.4212291,
+"lon": 26.1169866
+},
+{
+"tags": {
+"addr:city": "Mizil",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.0018524,
+"lon": 26.4442755
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.1537242,
+"lon": 26.8199622
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.1468517,
+"lon": 26.8134695
+},
+{
+"tags": {
+"addr:city": "Craiova",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.3272534,
+"lon": 23.8163589
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:street": "Șoseaua Ștefan cel Mare",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.4527003,
+"lon": 26.1060192
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-17:00"
+},
+"lat": 44.4161245,
+"lon": 26.1762171
+},
+{
+"tags": {
+"addr:city": "Techirghiol",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.055082,
+"lon": 28.6018003
+},
+{
+"tags": {
+"addr:city": "Eforie Sud",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.0279375,
+"lon": 28.648844
+},
+{
+"tags": {
+"addr:city": "Vaslui",
+"addr:street": "Strada Traian",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.6325477,
+"lon": 27.729374
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-13:00,13:30-17:00"
+},
+"lat": 44.2056655,
+"lon": 28.6447181
+},
+{
+"tags": {
+"addr:city": "Bolintin-Vale",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.4474131,
+"lon": 25.7598459
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.2849523,
+"lon": 26.0605075
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.0767161,
+"lon": 25.4344255
+},
+{
+"tags": {
+"brand": "Raiffeisenbank",
+"name": "Raiffeisenbank"
+},
+"lat": 45.1614058,
+"lon": 26.8164333
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.8641646,
+"lon": 24.8777921
+},
+{
+"tags": {
+"name": "Raiffeisen Bank"
+},
+"lat": 44.4398196,
+"lon": 26.8521328
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.7193716,
+"lon": 25.3217543
+},
+{
+"tags": {
+"addr:city": "Buftea",
+"addr:housenumber": "12",
+"addr:street": "Strada Mihai Eminescu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.5604866,
+"lon": 25.94738
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.1865537,
+"lon": 21.3250219
+},
+{
+"tags": {
+"addr:city": "Călărași",
+"addr:housenumber": "107",
+"addr:street": "Calea București",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.1945135,
+"lon": 27.3278055
+},
+{
+"tags": {
+"addr:street": "Strada Belșugului",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.2050377,
+"lon": 27.3143324
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-13:00,13:30-17:00"
+},
+"lat": 44.9865732,
+"lon": 25.6427192
+},
+{
+"tags": {
+"addr:city": "Otopeni",
+"addr:street": "Strada 23 August",
+"brand": "Raiffeisenbank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.5513512,
+"lon": 26.0700816
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.0263044,
+"lon": 23.2684096
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:street": "Calea Vitan",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.4198926,
+"lon": 26.1255557
+},
+{
+"tags": {
+"addr:city": "Târgoviște",
+"addr:street": "Strada Constantin Brâncoveanu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.9287179,
+"lon": 25.4403139
+},
+{
+"tags": {
+"addr:city": "Târgoviște",
+"addr:street": "Bulevardul Independenței",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.9225145,
+"lon": 25.466269
+},
+{
+"tags": {
+"addr:city": "Timișoara",
+"addr:housenumber": "53",
+"addr:street": "Strada Ștefan cel Mare",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-13:00,13:30-17:30"
+},
+"lat": 45.7512151,
+"lon": 21.2523817
+},
+{
+"tags": {
+"addr:city": "Timișoara",
+"addr:housenumber": "81",
+"addr:street": "Strada Doctor Grigore T. Popa",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.7804995,
+"lon": 21.2205769
+},
+{
+"tags": {
+"addr:city": "Timișoara",
+"addr:housenumber": "56",
+"addr:street": "Bulevardul Simion Bărnuțiu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.7640799,
+"lon": 21.258076
+},
+{
+"tags": {
+"addr:street": "Șoseaua Giurgiului",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.3808977,
+"lon": 26.092773
+},
+{
+"tags": {
+"brand": "Raiffeisenbank",
+"name": "Raiffeisenbank"
+},
+"lat": 44.2526972,
+"lon": 28.5648254
+},
+{
+"tags": {
+"addr:city": "Năvodari",
+"addr:street": "Strada Constanței",
+"brand": "Raiffeisenbank",
+"name": "Raiffeisenbank"
+},
+"lat": 44.3232503,
+"lon": 28.6088335
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "83",
+"addr:street": "Bulevardul Uverturii",
+"brand": "Raiffeisenbank",
+"name": "Raiffeisenbank"
+},
+"lat": 44.439234,
+"lon": 26.0279007
+},
+{
+"tags": {
+"addr:city": "Arad",
+"addr:housenumber": "1-3",
+"addr:street": "Strada Andrei Șaguna",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-17:00",
+"phone": "+4 0257 703 510"
+},
+"lat": 46.1812207,
+"lon": 21.3097862
+},
+{
+"tags": {
+"addr:city": "Rupea",
+"addr:street": "Strada Republicii",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.0389917,
+"lon": 25.2206978
+},
+{
+"tags": {
+"addr:city": "Drăgănești-Olt",
+"addr:street": "Strada Nicolae Titulescu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.1695261,
+"lon": 24.5205468
+},
+{
+"tags": {
+"addr:city": "Bragadiru",
+"addr:street": "Șoseaua Alexandriei",
+"brand": "Raiffeisenbank",
+"name": "Raiffeisenbank"
+},
+"lat": 44.3695003,
+"lon": 25.9736834
+},
+{
+"tags": {
+"addr:city": "Târgoviște",
+"addr:housenumber": "6",
+"addr:street": "Calea București",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.9196798,
+"lon": 25.4770534
+},
+{
+"tags": {
+"name": "Raiffeisen Bank"
+},
+"lat": 46.3106973,
+"lon": 23.7205784
+},
+{
+"tags": {
+"addr:city": "Galați",
+"brand": "Raifeissen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.4300945,
+"lon": 28.0436921
+},
+{
+"tags": {
+"brand": "Raiffeisenbank",
+"name": "Raiffeisenbank"
+},
+"lat": 45.4062914,
+"lon": 28.0190868
+},
+{
+"tags": {
+"addr:city": "Ianca",
+"addr:housenumber": "B3",
+"addr:street": "Calea Brăilei",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"phone": "+40 23 970 37 20"
+},
+"lat": 45.1347711,
+"lon": 27.4805597
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.1149137,
+"lon": 25.9231943
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.6846903,
+"lon": 27.9496044
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.1453726,
+"lon": 23.9900556
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.9246525,
+"lon": 25.4600534
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.5682975,
+"lon": 23.7837388
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-17:30"
+},
+"lat": 44.4155299,
+"lon": 26.1341775
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.7217693,
+"lon": 25.6010433
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.0550288,
+"lon": 21.9294845
+},
+{
+"tags": {
+"addr:city": "Orăștie",
+"addr:housenumber": "C2",
+"addr:street": "Bulevardul Eroilor",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.8389627,
+"lon": 23.1912219
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.9235276,
+"lon": 25.3517026
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:street": "Calea Floreasca",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Su 10:00-18:00"
+},
+"lat": 44.4786872,
+"lon": 26.1032703
+},
+{
+"tags": {
+"addr:city": "Costești",
+"addr:street": "Strada Victoriei",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.6699695,
+"lon": 24.8801259
+},
+{
+"tags": {
+"addr:city": "Botoșani",
+"addr:housenumber": "65",
+"addr:street": "Calea Națională",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "24/7"
+},
+"lat": 47.7497705,
+"lon": 26.6514811
+},
+{
+"tags": {
+"addr:city": "Fetești-Gară",
+"addr:housenumber": "1-3",
+"addr:street": "Strada Ceahlău",
+"name": "Raiffeisenbank",
+"opening_hours": "Mo-Fr 09:00-17:30",
+"phone": "+40243703640"
+},
+"lat": 44.4136477,
+"lon": 27.8250653
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.7264115,
+"lon": 24.3822644
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.5571162,
+"lon": 23.8070916
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "3",
+"addr:street": "Piața Presei Libere",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-13:00, 13:30-17:30"
+},
+"lat": 44.4783584,
+"lon": 26.0711339
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.1412439,
+"lon": 28.622654
+},
+{
+"tags": {
+"addr:city": "Adjud",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.0977897,
+"lon": 27.1828665
+},
+{
+"tags": {
+"addr:city": "Slatina",
+"addr:housenumber": "2",
+"addr:street": "Strada Basarabilor",
+"name": "Raiffeisen Bank Basarabilor Slatina"
+},
+"lat": 44.4278455,
+"lon": 24.3628719
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "2",
+"addr:street": "Bulevardul Gheorghe Șincai",
+"brand": "Raiffeisenbank",
+"name": "Raiffeisenbank"
+},
+"lat": 44.4138968,
+"lon": 26.1057416
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.1519413,
+"lon": 24.6757909
+},
+{
+"tags": {
+"addr:city": "Sibiu",
+"addr:housenumber": "2",
+"addr:street": "Strada Tribunei",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "24/7"
+},
+"lat": 45.7931454,
+"lon": 24.1489363
+},
+{
+"tags": {
+"addr:city": "Sibiu",
+"addr:housenumber": "4",
+"addr:street": "Strada Gorjului",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-13:00,13:30-17:00"
+},
+"lat": 45.7882615,
+"lon": 24.1356686
+},
+{
+"tags": {
+"addr:city": "Timișoara",
+"addr:housenumber": "46C",
+"addr:street": "Bulevardul Take Ionescu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.7604421,
+"lon": 21.2419733
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "67",
+"addr:street": "Bulevardul Iuliu Maniu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:30-13:00, 13:30-17:30",
+"phone": "+40 21 370 23 40"
+},
+"lat": 44.4337938,
+"lon": 26.0195523
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.7994102,
+"lon": 24.1600021
+},
+{
+"tags": {
+"addr:housenumber": "4",
+"addr:street": "Bulevardul 1 Mai",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 08:00-17:00",
+"phone": "+40 21 306 3002"
+},
+"lat": 43.7770032,
+"lon": 24.5015382
+},
+{
+"tags": {
+"addr:city": "Târgu Mureș",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.5292853,
+"lon": 24.5463543
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.793355,
+"lon": 22.873675
+},
+{
+"tags": {
+"brand": "Raiffeisenbank",
+"name": "Raiffeisenbank"
+},
+"lat": 45.6417331,
+"lon": 25.588186
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "23",
+"addr:street": "Strada Ziduri Moși",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Su 10:00-21:00"
+},
+"lat": 44.4519191,
+"lon": 26.1302011
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "19",
+"addr:street": "Bulevardul Iuliu Maniu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Su 10:00-19:00",
+"phone": "+40 21 306 3002"
+},
+"lat": 44.4334608,
+"lon": 26.0356881
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "4",
+"addr:street": "Bulevardul General Paul Teodorescu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Su 10:00-22:00",
+"phone": "+40 21 370 2420"
+},
+"lat": 44.4298162,
+"lon": 26.0523073
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "42D",
+"addr:street": "Șoseaua București-Ploiești",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Su 10:00-19:00",
+"phone": "+40 21 306 3002"
+},
+"lat": 44.5066441,
+"lon": 26.0895683
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.5281773,
+"lon": 24.5956034
+},
+{
+"tags": {
+"addr:city": "Brașov",
+"addr:housenumber": "32 B",
+"addr:street": "Bulevardul Saturn",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-13:00,13:30-17:00",
+"phone": "+40 21 306 3002"
+},
+"lat": 45.6435121,
+"lon": 25.6323197
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "107-109",
+"addr:street": "Calea 13 Septembrie",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.4244061,
+"lon": 26.0764983
+},
+{
+"tags": {
+"brand": "Raiffeisenbank",
+"name": "Raiffeisenbank"
+},
+"lat": 44.9531655,
+"lon": 26.0009111
+},
+{
+"tags": {
+"addr:city": "Bacău",
+"addr:housenumber": "8",
+"addr:street": "Strada Pasajul Revoluției",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-17:00; Sa,Su off"
+},
+"lat": 46.5655636,
+"lon": 26.9135261
+},
+{
+"tags": {
+"addr:city": "Târgu Jiu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.0412658,
+"lon": 23.2730706
+},
+{
+"tags": {
+"addr:city": "Cluj-Napoca",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.7728903,
+"lon": 23.628416
+},
+{
+"tags": {
+"addr:city": "Slatina",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.4321448,
+"lon": 24.3701956
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.4141656,
+"lon": 25.5356122
+},
+{
+"tags": {
+"brand": "Raiffeisenbank",
+"name": "Raiffeisenbank"
+},
+"lat": 45.9759148,
+"lon": 24.6276786
+},
+{
+"tags": {
+"brand": "Raiffeisenbank",
+"name": "Raiffeisenbank"
+},
+"lat": 45.2860675,
+"lon": 27.9722116
+},
+{
+"tags": {
+"addr:city": "Zărnești",
+"addr:street": "Strada Mitropolit Ion Mețianu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.5606289,
+"lon": 25.3163901
+},
+{
+"tags": {
+"addr:city": "Râșnov",
+"addr:street": "Strada Republicii",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.5932045,
+"lon": 25.4612646
+},
+{
+"tags": {
+"addr:city": "Chitila",
+"addr:housenumber": "14",
+"addr:street": "Șoseaua Banatului",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-17:00"
+},
+"lat": 44.5035794,
+"lon": 25.9897594
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.3931118,
+"lon": 21.2240681
+},
+{
+"tags": {
+"addr:city": "Zalău",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.1923356,
+"lon": 23.0612522
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.4273683,
+"lon": 26.1002681
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "183",
+"addr:street": "Șoseaua Berceni",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.3792196,
+"lon": 26.1356649
+},
+{
+"tags": {
+"addr:city": "Sebeș",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.9564873,
+"lon": 23.5746062
+},
+{
+"tags": {
+"addr:city": "Slatina",
+"addr:housenumber": "1",
+"addr:street": "Strada Mânăstirii",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.4262286,
+"lon": 24.3682575
+},
+{
+"tags": {
+"addr:city": "Brașov",
+"addr:housenumber": "42",
+"addr:street": "Strada Mihai Viteazul",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.6554418,
+"lon": 25.6004405
+},
+{
+"tags": {
+"addr:city": "Cugir",
+"addr:street": "Strada Alexandru Sahia",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.8429607,
+"lon": 23.3601369
+},
+{
+"tags": {
+"addr:city": "Videle",
+"addr:street": "Șoseaua Giurgiului",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.2751985,
+"lon": 25.5251011
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.6609341,
+"lon": 24.2613682
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.6016342,
+"lon": 24.5415697
+},
+{
+"tags": {
+"addr:city": "Întorsura Buzăului",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.6746738,
+"lon": 26.0327594
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.5959666,
+"lon": 25.0710507
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "33A",
+"addr:street": "Bulevardul 1 Decembrie 1918",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-20:00; Sa 09:00-18:00"
+},
+"lat": 44.4200623,
+"lon": 26.1780928
+},
+{
+"tags": {
+"addr:city": "București",
+"addr:housenumber": "391",
+"addr:street": "Calea Văcărești",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Su 10:00-22:00",
+"phone": "+40 21 306 3002"
+},
+"lat": 44.3951716,
+"lon": 26.1224491
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.1853516,
+"lon": 28.6447802
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.6655095,
+"lon": 25.5989108
+},
+{
+"tags": {
+"name": "Raiffeisen Bank"
+},
+"lat": 45.1798754,
+"lon": 28.781761
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-17:00"
+},
+"lat": 43.8916329,
+"lon": 25.9674562
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.7266112,
+"lon": 24.3760866
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-13:00,13:30-17:00"
+},
+"lat": 47.6451153,
+"lon": 26.2604326
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.9462186,
+"lon": 26.0319629
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.7441596,
+"lon": 23.485521
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.1899638,
+"lon": 21.3215336
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.9932713,
+"lon": 26.2327677
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-13:00,13:30-17:00; Sa-Su off"
+},
+"lat": 45.1151866,
+"lon": 24.3636665
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-13:00,13:30-17:00; Sa-Su off"
+},
+"lat": 45.1030748,
+"lon": 24.3618307
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Fr 09:00-13:00,13:30-17:00; Sa-Su off"
+},
+"lat": 45.0948397,
+"lon": 24.3721937
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.0352829,
+"lon": 21.9478195
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.4536687,
+"lon": 26.0985999
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.5545697,
+"lon": 23.5193741
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.087834,
+"lon": 26.6387986
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank (România)"
+},
+"lat": 44.9571508,
+"lon": 24.9389658
+},
+{
+"tags": {
+"addr:city": "Bacău",
+"addr:housenumber": "2-4",
+"addr:street": "Strada Milcov",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank",
+"opening_hours": "Mo-Su 09:00-21:00"
+},
+"lat": 46.5627102,
+"lon": 26.9225226
+},
+{
+"tags": {
+"addr:city": "Oradea",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.0582611,
+"lon": 21.9138047
+},
+{
+"tags": {
+"addr:city": "Constanța",
+"addr:housenumber": "163C",
+"addr:street": "Bulevardul Alexandru Lăpușneanu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.2017416,
+"lon": 28.6303136
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.8648434,
+"lon": 25.7908429
+},
+{
+"tags": {
+"name": "Raiffeisenbank"
+},
+"lat": 46.4736243,
+"lon": 24.0947397
+},
+{
+"tags": {
+"addr:street": "Strada Mihai Viteazul",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.7788367,
+"lon": 24.6991127
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.8518143,
+"lon": 24.8773821
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.8482448,
+"lon": 27.4286112
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.5608709,
+"lon": 27.3613382
+},
+{
+"tags": {
+"addr:city": "Brașov",
+"addr:housenumber": "24",
+"addr:street": "Strada Hărmanului",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.6524903,
+"lon": 25.6126466
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 44.632977,
+"lon": 22.6584631
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.6946365,
+"lon": 27.1850452
+},
+{
+"tags": {
+"addr:city": "Florești",
+"addr:housenumber": "278",
+"addr:street": "Strada Avram Iancu",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 46.7452873,
+"lon": 23.4958944
+},
+{
+"tags": {
+"name": "Raiffeisenbank"
+},
+"lat": 45.1754674,
+"lon": 28.80314
+},
+{
+"tags": {
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 45.2717347,
+"lon": 27.965146
+},
+{
+"tags": {
+"addr:city": "Zalău",
+"brand": "Raiffeisen Bank",
+"name": "Raiffeisen Bank"
+},
+"lat": 47.1799135,
+"lon": 23.053466
+}
+]
