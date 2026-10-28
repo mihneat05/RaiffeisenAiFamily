@@ -2,3 +2,5 @@ anthropic[bedrock]
 pydantic
 pymupdf
 pillow
+python-dotenv
+streamlit
