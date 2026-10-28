@@ -138,6 +138,76 @@ def find_nearest(text):
                          "Le găsești pe raiffeisen.ro, la Rețea, sau la *2000.", "detalii": str(e)}
 
 
+# ------------------------------------------------------------------ adresa din buletin
+_CUV_CHEIE = {"mun", "municipiul", "or", "oras", "oraș", "orasul", "orașul", "com", "comuna", "sat", "satul", "loc",
+              "sec", "sector", "sectorul", "jud", "judet", "judetul", "județul", "str", "strada", "nr", "bd", "bdul",
+              "b-dul", "bulevardul", "cal", "calea", "al", "aleea", "sos", "șos", "soseaua", "șoseaua", "spl",
+              "splaiul", "int", "intrarea", "bl", "sc", "et", "ap", "cam"}
+_LOCALITATE = {"mun", "municipiul", "or", "oras", "oraș", "orasul", "orașul", "com", "comuna", "sat", "satul", "loc"}
+_STRADA = {"str": "Strada", "strada": "Strada", "bd": "Bulevardul", "bdul": "Bulevardul", "b-dul": "Bulevardul",
+           "bulevardul": "Bulevardul", "cal": "Calea", "calea": "Calea", "al": "Aleea", "aleea": "Aleea",
+           "sos": "Șoseaua", "șos": "Șoseaua", "soseaua": "Șoseaua", "șoseaua": "Șoseaua",
+           "spl": "Splaiul", "splaiul": "Splaiul", "int": "Intrarea", "intrarea": "Intrarea"}
+
+
+def _tokeni(a):
+    """„Mun.București Sec.6 Str.X nr.4” -> [("mun","București"), ("sec","6"), ("str","X"), ("nr","4")]."""
+    a = re.sub(r"(?<=[A-Za-zăâîșțşţĂÂÎȘȚŞŢ])\.(?=\S)", ". ", str(a or "").replace(",", " "))  # „Str.X” -> „Str. X”
+    out, cheie, val = [], None, []
+    for w in a.split():
+        k = w.rstrip(".").lower()
+        if k in _CUV_CHEIE:
+            if cheie or val:
+                out.append((cheie, " ".join(val)))
+            cheie, val = k, []
+        else:
+            val.append(w)
+    if cheie or val:
+        out.append((cheie, " ".join(val)))
+    return out
+
+
+def candidati_adresa(adresa):
+    """Adresa ca pe buletin -> variante de căutat, de la cea mai precisă la cea mai largă.
+
+    "Mun.București Sec.6 Str.Valea Ialomiței nr.4 bl.C1 sc.1 ap.12"
+      -> ["Strada Valea Ialomiței 4, Sector 6, București", "Sector 6, București", "București"]
+    """
+    t = _tokeni(adresa)
+    if not t:
+        return []
+    loc = [v for k, v in t if k in _LOCALITATE and v]
+    sector = next((v for k, v in t if k in ("sec", "sector", "sectorul") and v), None)
+    strada = next(((k, v) for k, v in t if k in _STRADA and v), None)
+    nr = next((v for k, v in t if k == "nr" and v), None)
+    oras = ", ".join(reversed(loc)) if loc else None        # „Sat Ghighiu Com Bărcănești” -> „Ghighiu, Bărcănești”
+    zona = ", ".join(x for x in (f"Sector {sector}" if sector else None, oras) if x)
+    out = []
+    if strada and zona:
+        out.append(f"{_STRADA[strada[0]]} {strada[1]}{' ' + nr if nr else ''}, {zona}")
+    if zona:
+        out.append(zona)
+    if loc:
+        out.append(loc[0])
+    if not out:  # n-am recunoscut nimic: trimitem textul brut, fără bloc/scară/apartament
+        out.append(" ".join(v for k, v in t if k not in ("bl", "sc", "et", "ap", "cam") and v))
+    return [x for x in dict.fromkeys(out) if x]
+
+
+def find_nearest_from_address(adresa):
+    """Ca find_nearest, dar pornind de la adresa de pe buletin (încearcă variantele pe rând)."""
+    variante = candidati_adresa(adresa)
+    if not variante:
+        return {"eroare": "fara_adresa", "mesaj": "Nu am putut citi adresa de pe buletin."}
+    rez = None
+    for v in variante:
+        rez = find_nearest(v)
+        if rez.get("eroare") == "fara_conexiune" or rez.get("sucursale"):
+            break
+    rez["din_buletin"] = True
+    return rez
+
+
 if __name__ == "__main__":
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")

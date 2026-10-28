@@ -95,8 +95,9 @@ CSS = f"""
   .st-key-chatbox :is(p, li, span, em, strong) {{ color: var(--rb-black); }}
   .rb-tag {{ color: var(--rb-yellow) !important; }}
 
-  .st-key-sucursala [data-baseweb="input"] {{ border:1px solid #cfcfcf !important; border-radius:999px !important;
-      background:var(--rb-grey) !important; padding-left:6px; }}
+  .st-key-sucursala [data-testid="stTextInputRootElement"], .st-key-sucursala [data-baseweb="input"] {{
+      border:1.5px solid #bdbdbd !important; border-radius:999px !important; background:var(--rb-grey) !important; }}
+  .st-key-sucursala input {{ background:transparent !important; padding-left:14px !important; }}
 
   .rb-foot {{ text-align:center; font-size:.78rem; color:#777; margin-top:18px; }}
 
@@ -262,6 +263,21 @@ def _cauta_sucursala():
         st.session_state.branch_result = backend.find_branches(loc)
 
 
+def adresa_din_buletin():
+    """Domiciliul citit de P2 de pe primul buletin încărcat (sau None)."""
+    for d in st.session_state.get("docs", []):
+        if d.get("doc_type") == "buletin" and (d.get("fields") or {}).get("adresa"):
+            return d["fields"]["adresa"]
+    return None
+
+
+def _cauta_dupa_buletin():
+    adresa = adresa_din_buletin()
+    if adresa:
+        st.session_state.branch_result = backend.find_branches_from_address(adresa)
+        st.session_state.locatie = "domiciliul din buletin"
+
+
 def best_branch():
     res = st.session_state.get("branch_result") or {}
     return (res.get("sucursale") or [None])[0] or backend.find_branch()
@@ -275,6 +291,9 @@ def render_branch():
                           label_visibility="collapsed")
             st.form_submit_button("🔎 Caută cea mai apropiată sucursală", on_click=_cauta_sucursala,
                                   use_container_width=True)
+        if adresa_din_buletin():
+            st.button("🪪 Caută lângă adresa din buletin", on_click=_cauta_dupa_buletin,
+                      use_container_width=True, key="btn_buletin")
 
         res = st.session_state.get("branch_result")
         if not res:
@@ -285,6 +304,8 @@ def render_branch():
             return
 
         st.caption(f"Lângă: {res['locatie'].get('gasit', '')[:90]}")
+        if res.get("din_buletin"):
+            st.caption("🪪 După domiciliul din buletin. Dacă acum stai în altă parte, scrie locația mai sus.")
         for i, b in enumerate(res["sucursale"]):
             with st.container(border=True):
                 st.markdown(f"{'⭐ ' if i == 0 else ''}**{b['name']}** · {b['distance']}  \n{b['address']}")
@@ -308,6 +329,7 @@ def render_chat(event, verdict):
             "verdict": verdict,
             "history": st.session_state.messages,
             "locatie": st.session_state.get("locatie"),
+            "are_adresa_in_buletin": bool(adresa_din_buletin()),
         }
         with box, st.spinner("Mă gândesc…"):
             result = backend.agent_turn(prompt, ctx)

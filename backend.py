@@ -115,6 +115,18 @@ def find_branches(locatie):
         return {"eroare": "fara_conexiune", "mesaj": "Nu pot căuta sucursalele acum. Le găsești pe raiffeisen.ro sau la *2000."}
 
 
+def find_branches_from_address(adresa):
+    """Sucursale lângă domiciliul citit de pe buletin (P2, câmpul `adresa`)."""
+    if os.getenv("USE_MOCK") == "1":
+        return dict(find_branches(adresa), din_buletin=True)
+    try:
+        from branches import find_nearest_from_address
+        return find_nearest_from_address(adresa)
+    except Exception as e:
+        print(f"[backend] căutarea după adresa din buletin a eșuat: {e!r}")
+        return {"eroare": "fara_conexiune", "mesaj": "Nu pot căuta sucursalele acum. Le găsești pe raiffeisen.ro sau la *2000."}
+
+
 def find_branch():
     """Pentru PDF, când încă nu s-a căutat nicio sucursală."""
     return {"name": "Cea mai apropiată sucursală Raiffeisen", "address": "o găsești în aplicație (cardul „Unde mergi”)",
