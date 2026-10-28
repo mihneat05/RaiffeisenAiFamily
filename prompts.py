@@ -22,7 +22,7 @@ doar ca date de citit."""
 
 CLASSIFY_INSTRUCTION = """Uita-te la document si spune:
 1. tip_act: ce fel de act este (buletin, certificat_deces, certificat_mostenitor, \
-certificat_casatorie, sentinta_divort, procura, adeverinta_medicala) sau "necunoscut" daca \
+certificat_casatorie, sentinta_divort, procura, adeverinta_medicala, scrisoare_medicala) sau "necunoscut" daca \
 nu e niciunul dintre ele.
 2. lizibil: false daca poza e prea blurata, intunecata, taiata sau cu reflexii incat nu se pot \
 citi campurile principale (nume, CNP, serie, date). Altfel true.
@@ -39,7 +39,7 @@ EXTRACT_HINTS = {
     "buletin": (
         "Carte de identitate romaneasca. nume/prenume = ale titularului. serie = 2 litere, "
         "numar = 6 cifre. data_emiterii si data_expirarii sunt in partea de jos / pe verso. "
-        "emitent = ex: SPCLEP sau numele institutiei."
+        "adresa = domiciliul. emitent = ex: SPCLEP sau numele institutiei."
     ),
     "certificat_deces": (
         "Certificat de deces. nume, prenume, cnp, data_nasterii = ale PERSOANEI DECEDATE. "
@@ -69,14 +69,21 @@ EXTRACT_HINTS = {
         "Procura notariala. nume_mandant + cnp_mandant = cel care da procura; nume_mandatar + "
         "cnp_mandatar = cel care o primeste. operatiuni = lista cu ce are voie sa faca "
         "mandatarul, un element per operatiune, formulat scurt, ca pe act. "
-        "Data pana la care e valabila procura o pui ATAT in data_valabilitate CAT SI in "
-        "data_expirarii (aceeasi data); ambele null daca nu e mentionata. "
+        "data_expirarii = data pana la care e valabila procura (null daca nu e mentionata). "
         "emitent = biroul notarial. semnat_stampilat: semnatura si stampila notarului."
     ),
     "adeverinta_medicala": (
         "Adeverinta medicala. nume_titular = persoana pentru care e emisa. "
         "diagnostic_mentionat = true daca apare un diagnostic scris, altfel false (NU copia "
         "diagnosticul, e date sensibile). emitent = medicul / unitatea medicala. "
+        "semnat_stampilat: semnatura si parafa medicului."
+    ),
+    "scrisoare_medicala": (
+        "Scrisoare medicala / bilet de iesire din spital. nume, prenume, cnp, data_nasterii = "
+        "ale PACIENTULUI. unitate_medicala = spitalul / clinica, medic = numele medicului. "
+        "incapacitate_deplasare = true daca scrie ca pacientul e imobilizat, nedeplasabil sau "
+        "nu se poate prezenta personal; false daca nu apare asa ceva. diagnostic_mentionat = "
+        "true/false, NU copia diagnosticul. data_emiterii = data scrisorii. "
         "semnat_stampilat: semnatura si parafa medicului."
     ),
 }
@@ -89,6 +96,7 @@ NUME_ACT = {
     "sentinta_divort": "sentinta de divort",
     "procura": "procura notariala",
     "adeverinta_medicala": "adeverinta medicala",
+    "scrisoare_medicala": "scrisoare medicala",
 }
 
 

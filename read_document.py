@@ -9,9 +9,11 @@ Folosire din terminal:
     python read_document.py cale/catre/act.jpg
 
 Variabile de mediu:
-    Anthropic direct:  ANTHROPIC_API_KEY  (+ optional P2_MODEL)
-    Amazon Bedrock:    AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION
-                       + P2_MODEL = ID-ul modelului din Bedrock (obligatoriu)
+    ANTHROPIC_API_KEY   cheia API Anthropic, SAU
+    AWS_ACCESS_KEY_ID + AWS_SECRET_ACCESS_KEY (+ AWS_SESSION_TOKEN, AWS_DEFAULT_REGION)
+                        pentru AWS Bedrock (pip install "anthropic[bedrock]")
+                        -> pe Bedrock seteaza P2_MODEL la ID-ul Bedrock al modelului
+    P2_MODEL            modelul de folosit (optional, implicit claude-sonnet-5-5)
 
 Rezultate posibile (toate sunt dict-uri):
     - act citit:        {"tip_act": "...", "lizibil": true, "nume": ..., "cnp": ..., ...}
@@ -37,21 +39,9 @@ from prompts import (
     SYSTEM_PROMPT,
     build_extract_instruction,
 )
-import schemas as _S  # schemas.py de la P3 = sursa de adevar pentru chei
+from schemas import SCHEMAS, TipAct, to_json_dict
 
-# tip_act -> clasa Pydantic, descoperite automat din schemas.py (ex: "buletin" -> Buletin)
-SCHEMAS = {
-    c.model_fields["tip_act"].default: c
-    for c in vars(_S).values()
-    if isinstance(c, type) and issubclass(c, _S.ActBaza) and c is not _S.ActBaza
-}
-TIPURI = list(SCHEMAS) + ["necunoscut"]
-
-
-def to_json_dict(act) -> dict:
-    """Dict gata de JSON (cu orice date convertite in text)."""
-    return act.model_dump(mode="json")
-
+MODEL = os.getenv("P2_MODEL", "claude-sonnet-5-5")
 MAX_PAGES = 3          # cate pagini dintr-un PDF citim
 MAX_SIDE = 2000        # latura maxima a imaginii trimise (px)
 MAX_RETRIES = 2        # reincercari daca validarea Pydantic pica
@@ -61,39 +51,18 @@ logger = logging.getLogger("p2")
 _client = None
 
 
-def get_provider() -> str:
-    """'bedrock' sau 'anthropic'. Se poate forta cu P2_PROVIDER.
-    Implicit: daca exista credentiale AWS -> bedrock, altfel anthropic."""
-    forced = (os.getenv("P2_PROVIDER") or "").lower()
-    if forced in ("bedrock", "anthropic"):
-        return forced
-    if os.getenv("AWS_ACCESS_KEY_ID"):
-        return "bedrock"
-    return "anthropic"
-
-
-def get_client():
+def get_client() -> anthropic.Anthropic:
     global _client
     if _client is None:
-        if get_provider() == "bedrock":
+        if os.getenv("AWS_ACCESS_KEY_ID") and not os.getenv("ANTHROPIC_API_KEY"):
+            # AWS Bedrock: citeste AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY /
+            # AWS_SESSION_TOKEN / AWS_DEFAULT_REGION din mediu
             _client = anthropic.AnthropicBedrock(
-                aws_region=os.getenv("AWS_REGION") or os.getenv("AWS_DEFAULT_REGION") or "us-east-1"
+                aws_region=os.getenv("AWS_DEFAULT_REGION", "us-west-2")
             )
         else:
             _client = anthropic.Anthropic()  # citeste ANTHROPIC_API_KEY din mediu
     return _client
-
-
-def get_model() -> str:
-    model = os.getenv("P2_MODEL")
-    if model:
-        return model
-    if get_provider() == "anthropic":
-        return "claude-sonnet-5-5"
-    raise RuntimeError(
-        "Lipseste P2_MODEL. Pe Bedrock trebuie ID-ul modelului "
-        '(ex: $env:P2_MODEL="us.anthropic.claude-haiku-4-5-20251001-v1:0").'
-    )
 
 
 # --------------------------------------------------------------------------
@@ -152,14 +121,18 @@ def _call_tool(images: list[tuple[str, str]], instruction: str, tool: dict) -> d
         {"type": "image", "source": {"type": "base64", "media_type": m, "data": d}}
         for m, d in images
     ]
-    content.append({"type": "text", "text": instruction})
+    content.append({
+        "type": "text",
+        "text": instruction + f"\n\nRaspunde OBLIGATORIU apeland functia `{tool['name']}`.",
+    })
 
     resp = get_client().messages.create(
-        model=get_model(),
-        max_tokens=2000,
+        model=MODEL,
+        max_tokens=8000,   # include si "gandirea" modelului
         system=SYSTEM_PROMPT,
         tools=[tool],
-        tool_choice={"type": "tool", "name": tool["name"]},
+        # unele modele (ex: claude-sonnet-5-5) accepta doar tool_choice "auto"
+        tool_choice={"type": "auto"},
         messages=[{"role": "user", "content": content}],
     )
     for block in resp.content:
@@ -174,7 +147,7 @@ CLASSIFY_TOOL = {
     "input_schema": {
         "type": "object",
         "properties": {
-            "tip_act": {"type": "string", "enum": TIPURI},
+            "tip_act": {"type": "string", "enum": list(TipAct.__args__)},
             "lizibil": {"type": "boolean"},
             "motiv_nelizibil": {"type": ["string", "null"]},
         },
@@ -247,7 +220,8 @@ def _clean(raw: dict) -> dict:
 
 
 # --------------------------------------------------------------------------
-# Datele: schema P3 le tine ca text, deci ne asiguram noi ca sunt YYYY-MM-DD
+# Date: daca LLM-ul scrie 03.09.2031 in loc de 2031-09-03, convertim noi,
+# altfel validarea Pydantic ar pica si s-ar pierde tot actul. (P1)
 # --------------------------------------------------------------------------
 _ISO = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 _RO_DATE = re.compile(r"^(\d{1,2})[./-](\d{1,2})[./-](\d{4})$")
@@ -259,10 +233,11 @@ def _normalize_dates(raw: dict) -> dict:
         if k.startswith("data_") and isinstance(v, str):
             m = _RO_DATE.match(v)
             if m:
-                v = f"{m.group(3)}-{int(m.group(2)):02d}-{int(m.group(1)):02d}"
-                raw[k] = v
-            if not _ISO.match(v) and k not in nesigure:
-                nesigure.append(k)  # nu stim sa o convertim -> o marcam nesigura
+                v = raw[k] = f"{m.group(3)}-{int(m.group(2)):02d}-{int(m.group(1)):02d}"
+            if not _ISO.match(v):
+                raw[k] = None          # nu stim sa o citim -> null + marcata nesigura
+                if k not in nesigure:
+                    nesigure.append(k)
     raw["campuri_nesigure"] = nesigure
     return raw
 
@@ -289,7 +264,7 @@ def _read_document(file: str) -> dict:
                 "lizibil": False,
                 "motiv": meta.get("motiv_nelizibil") or "documentul nu este lizibil",
             }
-        if tip == "necunoscut" or tip not in SCHEMAS:
+        if tip == "necunoscut":
             return {"tip_act": "necunoscut", "lizibil": True, "eroare": "tip_act_nerecunoscut"}
 
         # 3. extractie + validare Pydantic, cu reincercari
@@ -309,7 +284,7 @@ def _read_document(file: str) -> dict:
 
         return {"tip_act": tip, "lizibil": True, "eroare": "extractie_esuata"}
 
-    except Exception as e:  # erori API / AWS (credentiale, permisiuni, model)
+    except Exception as e:  # API, credentiale AWS, model fara tool_use etc. - nu oprim aplicatia (P1)
         logger.error("Eroare API: %s", e)
         return {"eroare": "api_error", "detalii": str(e)}
 

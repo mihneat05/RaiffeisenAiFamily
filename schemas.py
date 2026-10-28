@@ -1,104 +1,157 @@
-"""schemas.py – contractul comun P2 (read_document) ↔ P3 (validare) ↔ P1 (agent).
-
-Cheile sunt exact cele stabilite de P2. Ce e marcat cu  # PROPUNERE P3  lipsea din lista
-inițială și e necesar pentru crosscheck; confirmați în grup înainte să-l folosiți.
-
-Reguli de format (P2):
-  - CNP: string de 13 cifre (nu număr)
-  - date: "YYYY-MM-DD"
-  - lipsă / necitibil: null   (nu "", nu "N/A")
-  - booleeni: true / false
-
-IMPORTANT: câmpurile sunt intenționat permisive (str | None, fără regex). Dacă schema ar
-respinge un CNP greșit, Pydantic ar arunca o excepție și clientul n-ar mai primi mesajul
-„cifra de control nu se potrivește”. Validarea se face în P3, nu aici.
 """
-from __future__ import annotations
+schemas.py - contractul de date dintre P2 (citire acte) si P3 (validare/crosscheck).
 
-from typing import Annotated, Literal, Optional, Union
+Reguli:
+- Toate campurile sunt Optional: daca LLM-ul nu vede ceva, pune None (null), nu inventeaza.
+- CNP = string, exact cum apare pe act. FARA validatori in schema (nici regex, nici cifra de
+  control): validarea o face P3, ca un CNP gresit sa ajunga la el si clientul sa primeasca
+  mesajul potrivit.
+- Date in format ISO (YYYY-MM-DD).
+- nume / prenume / cnp / data_nasterii = ale titularului actului. La certificatul de deces
+  si la cel de mostenitor, titularul = DEFUNCTUL (aceleasi chei, ca sa se compare direct).
+- Data de expirare e MEREU data_expirarii (inclusiv la procura).
+- `fisier` e completat de cod (numele fisierului), nu de LLM.
+"""
+from datetime import date
+from typing import Literal, Optional
 
-from pydantic import BaseModel, Field, TypeAdapter
+from pydantic import BaseModel, Field
 
-
-class ActBaza(BaseModel):
-    """Chei comune tuturor actelor."""
-    tip_act: str
-    fisier: Optional[str] = Field(None, description="numele fișierului încărcat")  # PROPUNERE P3 (pt. mesaje)
-    lizibil: Optional[bool] = None
-    nume: Optional[str] = None
-    prenume: Optional[str] = None
-    cnp: Optional[str] = Field(None, description="13 cifre, ca string")
-    data_nasterii: Optional[str] = Field(None, description="YYYY-MM-DD")
-    serie: Optional[str] = None
-    numar: Optional[str] = None
-    data_emiterii: Optional[str] = Field(None, description="YYYY-MM-DD")
-    data_expirarii: Optional[str] = Field(None, description="YYYY-MM-DD")
-    emitent: Optional[str] = Field(None, description="SPCLEP / notar / instanță / starea civilă")
-    semnat_stampilat: Optional[bool] = None
-    campuri_nesigure: list[str] = Field(default_factory=list,
-                                        description="cheile citite cu încredere mică")
-
-
-class Buletin(ActBaza):
-    tip_act: Literal["buletin"] = "buletin"
-
-
-class CertificatDeces(ActBaza):
-    """nume / prenume / cnp = persoana decedată."""
-    tip_act: Literal["certificat_deces"] = "certificat_deces"
-    data_decesului: Optional[str] = None
-    locul_decesului: Optional[str] = None
+TipAct = Literal[
+    "buletin",
+    "certificat_deces",
+    "certificat_mostenitor",
+    "certificat_casatorie",
+    "sentinta_divort",
+    "procura",
+    "adeverinta_medicala",
+    "scrisoare_medicala",
+    "necunoscut",
+]
 
 
-class Mostenitor(BaseModel):  # PROPUNERE P3
+class ActBase(BaseModel):
+    """Campuri comune tuturor actelor."""
+
+    tip_act: TipAct
+    fisier: Optional[str] = None          # numele pozei/PDF-ului, setat de cod
+    lizibil: bool = True
     nume: Optional[str] = None
     prenume: Optional[str] = None
     cnp: Optional[str] = None
-    cota: Optional[str] = Field(None, description='ex. "1/4" sau "25%"')
+    data_nasterii: Optional[date] = None
+    serie: Optional[str] = None
+    numar: Optional[str] = None
+    data_emiterii: Optional[date] = None
+    data_expirarii: Optional[date] = None
+    emitent: Optional[str] = None
+    semnat_stampilat: Optional[bool] = None
+    # numele campurilor pe care LLM-ul nu e sigur (ex: ["cnp", "serie"])
+    campuri_nesigure: list[str] = Field(default_factory=list)
 
 
-class CertificatMostenitor(ActBaza):  # PROPUNERE P3 – lipsea din listă, dar e actul central la deces
-    """nume / prenume / cnp = persoana decedată (aceleași chei ca pe certificatul de deces)."""
+class Buletin(ActBase):
+    tip_act: Literal["buletin"] = "buletin"
+    adresa: Optional[str] = None
+    cetatenie: Optional[str] = None
+
+
+class CertificatDeces(ActBase):
+    tip_act: Literal["certificat_deces"] = "certificat_deces"
+    # nume / prenume / cnp / data_nasterii = ale persoanei decedate
+    data_decesului: Optional[date] = None
+    locul_decesului: Optional[str] = None
+
+
+class Mostenitor(BaseModel):
+    nume: Optional[str] = None
+    prenume: Optional[str] = None
+    cnp: Optional[str] = None
+    cota: Optional[str] = None            # ex: "1/2"
+
+
+class CertificatMostenitor(ActBase):
     tip_act: Literal["certificat_mostenitor"] = "certificat_mostenitor"
+    # nume / prenume / cnp = ale DEFUNCTULUI (ca pe certificatul de deces)
     mostenitori: list[Mostenitor] = Field(default_factory=list)
 
 
-class CertificatCasatorie(ActBaza):
+class CertificatCasatorie(ActBase):
     tip_act: Literal["certificat_casatorie"] = "certificat_casatorie"
-    nume_sot: Optional[str] = Field(None, description="nume complet")
+    nume_sot: Optional[str] = None
     cnp_sot: Optional[str] = None
-    nume_sotie: Optional[str] = Field(None, description="nume complet")
+    nume_sotie: Optional[str] = None
     cnp_sotie: Optional[str] = None
-    data_casatoriei: Optional[str] = None
+    data_casatoriei: Optional[date] = None
 
 
-class SentintaDivort(ActBaza):
-    """data_ramanerii_definitive = null înseamnă că sentința NU e definitivă."""
+class SentintaDivort(ActBase):
     tip_act: Literal["sentinta_divort"] = "sentinta_divort"
-    data_ramanerii_definitive: Optional[str] = None
     nume_reclamant: Optional[str] = None
+    cnp_reclamant: Optional[str] = None
     nume_parat: Optional[str] = None
-    cnp_reclamant: Optional[str] = None  # PROPUNERE P3 (dacă apare în sentință)
-    cnp_parat: Optional[str] = None      # PROPUNERE P3
+    cnp_parat: Optional[str] = None
+    data_ramanerii_definitive: Optional[date] = None
 
 
-class Procura(ActBaza):
+class Procura(ActBase):
     tip_act: Literal["procura"] = "procura"
     nume_mandant: Optional[str] = None
+    cnp_mandant: Optional[str] = None
     nume_mandatar: Optional[str] = None
-    cnp_mandant: Optional[str] = None    # PROPUNERE P3 – procura notarială are CNP-urile
-    cnp_mandatar: Optional[str] = None   # PROPUNERE P3
-    data_valabilitate: Optional[str] = Field(None, description="până când e valabilă; null = nelimitat")
-    operatiuni: Optional[list[str]] = Field(None, description="ce are voie împuternicitul")  # PROPUNERE P3
+    cnp_mandatar: Optional[str] = None
+    operatiuni: list[str] = Field(default_factory=list)   # ce are voie sa faca mandatarul
+    # data de expirare = data_expirarii (din ActBase)
 
 
-Act = Annotated[
-    Union[Buletin, CertificatDeces, CertificatMostenitor, CertificatCasatorie, SentintaDivort, Procura],
-    Field(discriminator="tip_act"),
-]
-_adapter = TypeAdapter(Act)
+class AdeverintaMedicala(ActBase):
+    tip_act: Literal["adeverinta_medicala"] = "adeverinta_medicala"
+    nume_titular: Optional[str] = None
+    diagnostic_mentionat: Optional[bool] = None
 
 
-def parse_act(data: dict) -> BaseModel:
-    """dict de la LLM -> modelul potrivit, după tip_act."""
-    return _adapter.validate_python(data)
+class ScrisoareMedicala(ActBase):
+    """Scrisoare medicala (flux imputernicire): dovedeste ca titularul nu se poate prezenta."""
+
+    tip_act: Literal["scrisoare_medicala"] = "scrisoare_medicala"
+    # nume / prenume / cnp / data_nasterii = ale PACIENTULUI
+    unitate_medicala: Optional[str] = None
+    medic: Optional[str] = None
+    # true daca scrisoarea spune ca pacientul e imobilizat / nu se poate deplasa
+    incapacitate_deplasare: Optional[bool] = None
+    diagnostic_mentionat: Optional[bool] = None   # NU copiem diagnosticul (date sensibile)
+
+
+class ActNecunoscut(ActBase):
+    """Folosit cand actul nu poate fi clasificat sau poza nu e lizibila."""
+
+    tip_act: Literal["necunoscut"] = "necunoscut"
+
+
+SCHEMAS: dict[str, type[ActBase]] = {
+    "buletin": Buletin,
+    "certificat_deces": CertificatDeces,
+    "certificat_mostenitor": CertificatMostenitor,
+    "certificat_casatorie": CertificatCasatorie,
+    "sentinta_divort": SentintaDivort,
+    "procura": Procura,
+    "adeverinta_medicala": AdeverintaMedicala,
+    "scrisoare_medicala": ScrisoareMedicala,
+    "necunoscut": ActNecunoscut,
+}
+
+
+def to_json_dict(act: ActBase) -> dict:
+    """Dict gata de JSON (datele devin string ISO). Foloseste asta, nu model_dump() simplu."""
+    return act.model_dump(mode="json")
+
+
+if __name__ == "__main__":
+    # test rapid: python schemas.py
+    exemplu = CertificatMostenitor(
+        nume="Popescu",
+        prenume="Ion",
+        cnp="1500101123456",
+        mostenitori=[Mostenitor(nume="Popescu", prenume="Maria", cnp="2520202123456", cota="1/2")],
+    )
+    print(to_json_dict(exemplu))
