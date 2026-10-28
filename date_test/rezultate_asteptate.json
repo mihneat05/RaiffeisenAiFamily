@@ -1,0 +1,188 @@
+[
+  {
+    "caz": "caz1_complet",
+    "flux_id": "deces_succesiune",
+    "scenariu": "ridicare_bani",
+    "acte_incarcate": {
+      "certificat_deces.png": {
+        "tip_act": "certificat_deces",
+        "campuri": {
+          "nume_defunct": "MARINESCU",
+          "prenume_defunct": "GHEORGHE",
+          "cnp_defunct": "1510412401181",
+          "data_decesului": "2026-03-14",
+          "locul_decesului": "București",
+          "serie_numar_certificat": "DZ 482913",
+          "data_eliberarii": "2026-03-16"
+        },
+        "cnp_valid": {
+          "cnp_defunct": true
+        }
+      },
+      "certificat_mostenitor.png": {
+        "tip_act": "certificat_mostenitor",
+        "campuri": {
+          "nume_defunct": "MARINESCU GHEORGHE",
+          "cnp_defunct": "1510412401181",
+          "mostenitori": [
+            {
+              "nume": "MARINESCU ELENA",
+              "cnp": "2551121403051",
+              "cota": "1/2"
+            },
+            {
+              "nume": "MARINESCU ANDREI",
+              "cnp": "1820903402272",
+              "cota": "1/2"
+            }
+          ],
+          "notar": "BNP Exemplu Notar (fictiv)",
+          "numar_certificat": "101/2026",
+          "data_emiterii": "2026-07-15",
+          "semnatura_stampila": true
+        },
+        "cnp_valid": {
+          "cnp_defunct": true
+        }
+      },
+      "buletin_solicitant.png": {
+        "tip_act": "act_identitate_solicitant",
+        "campuri": {
+          "nume": "MARINESCU",
+          "prenume": "ANDREI",
+          "cnp": "1820903402272",
+          "serie": "RX",
+          "numar": "604218",
+          "data_emiterii": "2021-05-10",
+          "data_expirarii": "2031-09-03"
+        },
+        "cnp_valid": {
+          "cnp": true
+        }
+      }
+    },
+    "rezultat_asteptat": {
+      "verdict": "gata",
+      "motive": [
+        "Toate actele cerute sunt prezente.",
+        "CNP-urile sunt valide.",
+        "Solicitantul apare ca moștenitor.",
+        "Buletinul este valabil."
+      ],
+      "acte_lipsa": []
+    }
+  },
+  {
+    "caz": "caz2_act_lipsa",
+    "flux_id": "deces_succesiune",
+    "scenariu": "ridicare_bani",
+    "acte_incarcate": {
+      "certificat_deces.png": {
+        "tip_act": "certificat_deces",
+        "campuri": {
+          "nume_defunct": "DUMITRESCU",
+          "prenume_defunct": "VASILE",
+          "cnp_defunct": "1480130120424",
+          "data_decesului": "2026-05-02",
+          "locul_decesului": "Cluj-Napoca",
+          "serie_numar_certificat": "CJ 117304",
+          "data_eliberarii": "2026-05-05"
+        },
+        "cnp_valid": {
+          "cnp_defunct": true
+        }
+      },
+      "buletin_solicitant.png": {
+        "tip_act": "act_identitate_solicitant",
+        "campuri": {
+          "nume": "DUMITRESCU",
+          "prenume": "IOANA",
+          "cnp": "2790617121560",
+          "serie": "KX",
+          "numar": "331907",
+          "data_emiterii": "2022-02-01",
+          "data_expirarii": "2032-06-17"
+        },
+        "cnp_valid": {
+          "cnp": true
+        }
+      }
+    },
+    "rezultat_asteptat": {
+      "verdict": "lipseste",
+      "motive": [
+        "Lipsește certificatul de moștenitor (sau hotărârea judecătorească definitivă).",
+        "Fără el, banca nu poate elibera banii."
+      ],
+      "acte_lipsa": [
+        "certificat_mostenitor"
+      ]
+    }
+  },
+  {
+    "caz": "caz3_cnp_gresit",
+    "flux_id": "deces_succesiune",
+    "scenariu": "ridicare_bani",
+    "acte_incarcate": {
+      "certificat_deces.png": {
+        "tip_act": "certificat_deces",
+        "campuri": {
+          "nume_defunct": "POPA",
+          "prenume_defunct": "MARIA",
+          "cnp_defunct": "2500808220713",
+          "data_decesului": "2026-02-20",
+          "locul_decesului": "Iași",
+          "serie_numar_certificat": "IS 905561",
+          "data_eliberarii": "2026-02-23"
+        },
+        "cnp_valid": {
+          "cnp_defunct": true
+        }
+      },
+      "certificat_mostenitor.png": {
+        "tip_act": "certificat_mostenitor",
+        "campuri": {
+          "nume_defunct": "POPA MARIA",
+          "cnp_defunct": "2500808220713",
+          "mostenitori": [
+            {
+              "nume": "POPA MIHAI",
+              "cnp": "1761205223496",
+              "cota": "1/1"
+            }
+          ],
+          "notar": "BNP Exemplu Notar (fictiv)",
+          "numar_certificat": "103/2026",
+          "data_emiterii": "2026-07-15",
+          "semnatura_stampila": true
+        },
+        "cnp_valid": {
+          "cnp_defunct": true
+        }
+      },
+      "buletin_solicitant.png": {
+        "tip_act": "act_identitate_solicitant",
+        "campuri": {
+          "nume": "POPA",
+          "prenume": "MIHAI",
+          "cnp": "1761205223499",
+          "serie": "MX",
+          "numar": "778120",
+          "data_emiterii": "2020-11-11",
+          "data_expirarii": "2030-12-05"
+        },
+        "cnp_valid": {
+          "cnp": false
+        }
+      }
+    },
+    "rezultat_asteptat": {
+      "verdict": "de_verificat",
+      "motive": [
+        "CNP-ul de pe buletin nu este valid (cifra de control greșită).",
+        "CNP-ul de pe buletin nu coincide cu CNP-ul moștenitorului din certificatul de moștenitor."
+      ],
+      "acte_lipsa": []
+    }
+  }
+]
