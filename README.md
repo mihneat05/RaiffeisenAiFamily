@@ -84,3 +84,8 @@ Exemple complete în formatul P2: `exemple_p2.py` (și pentru P5, ca model pentr
 Peste tot: CNP diferit cu același nume → ❌ · CNP identic cu nume de familie diferit → ⚠️ (posibilă căsătorie).
 
 Fluxuri: `deces`, `casatorie`, `divort`, `imputernicire`.
+
+## Team Contributions
+
+### P4 – Anastasia Radu
+- Contributed to the implementation and integration of the P4 module.
