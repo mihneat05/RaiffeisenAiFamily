@@ -89,3 +89,7 @@ Fluxuri: `deces`, `casatorie`, `divort`, `imputernicire`.
 
 ### P4 – Anastasia Radu
 - Contributed to the implementation and integration of the P4 module.
+
+
+### P2 – Mihnea Muresan
+- Contributed to the implementation and integration of the P2 module.
