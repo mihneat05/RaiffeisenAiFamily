@@ -127,6 +127,8 @@ def _program(oh):
 
 def _sucursala(el, lat, lon):
     t = el.get("tags", {})
+    if "atm" in str(t.get("name", "")).lower():   # bancomatele nu sunt sucursale
+        return None
     blat = el.get("lat") or el.get("center", {}).get("lat")
     blon = el.get("lon") or el.get("center", {}).get("lon")
     if blat is None or blon is None:
