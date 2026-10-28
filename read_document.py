@@ -41,7 +41,13 @@ from prompts import (
 )
 from schemas import SCHEMAS, TipAct, to_json_dict
 
-MODEL = os.getenv("P2_MODEL", "claude-sonnet-5-5")
+try:  # citeste .env si cand read_document e rulat singur (P1)
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+# P2_MODEL are prioritate; altfel acelasi MODEL ca agentul (din .env)
+MODEL = os.getenv("P2_MODEL") or os.getenv("MODEL") or "claude-sonnet-5-5"
 MAX_PAGES = 3          # cate pagini dintr-un PDF citim
 MAX_SIDE = 2000        # latura maxima a imaginii trimise (px)
 MAX_RETRIES = 2        # reincercari daca validarea Pydantic pica

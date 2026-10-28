@@ -42,10 +42,15 @@ os.environ.setdefault("P2_MODEL", MODEL)  # read_document (P2) folosește acela�
 
 from read_document import mask_cnp, read_document  # noqa: E402  (P2)
 
-try:  # P3 – se folosește automat când validare.py apare în repo
+import sys  # noqa: E402
+for _p in (ROOT, ROOT / "p3_zana"):          # P3 poate sta în rădăcină sau în p3_zana/
+    if (_p / "validare").is_dir() and str(_p) not in sys.path:
+        sys.path.append(str(_p))
+try:  # P3 – validare + crosscheck (se folosește automat dacă există)
     from validare import crosscheck_documents as p3_crosscheck
+    from validare import validate_document as p3_validate
 except ImportError:
-    p3_crosscheck = None
+    p3_crosscheck = p3_validate = None
 
 # ---------------------------------------------------------------- knowledge base (P5)
 KB = {}
@@ -87,8 +92,21 @@ def cnp_valid(cnp):
     return (1 if s == 10 else s) == int(cnp[12])
 
 
+def _p3_probleme(verdict):
+    return [{"severitate": q.severitate.value, "cod": q.cod, "mesaj": q.mesaj} for q in verdict.probleme]
+
+
 def check_one(doc):
-    """Probleme pe un singur act: [{severitate, cod, mesaj}]."""
+    """Probleme pe un singur act: [{severitate, cod, mesaj}]. Folosește P3 dacă există."""
+    if p3_validate and not doc.get("eroare") and doc.get("lizibil") is not False:
+        try:
+            return _p3_probleme(p3_validate(doc))
+        except Exception as e:
+            print(f"  [P3 validate eroare, folosesc verificarile simple] {e}")
+    return _check_one_simplu(doc)
+
+
+def _check_one_simplu(doc):
     f, p = doc.get("fisier", "act"), []
     if doc.get("eroare"):
         p.append({"severitate": "eroare", "cod": doc["eroare"], "mesaj": f"{f}: nu am putut citi actul ({doc['eroare']})."})
@@ -167,27 +185,33 @@ class Session:
         return out
 
 
+def _flux_p3(s):
+    if s.flux == "deces_succesiune":
+        return "deces"
+    if s.flux == "imputernicire":
+        return "imputernicire"
+    return "divort" if "divort" in (s.scenariu or "") else "casatorie"
+
+
 def run_check(s: Session):
-    lista = s.checklist()
-    probleme = [q for d in s.docs for q in check_one(d)] + crosscheck(s.flux, s.docs)
-    if p3_crosscheck:  # dacă P3 a urcat validare.py, îi adăugăm și verificările lui
+    lista = s.checklist()  # actele necesare vin din scenariul din KB (P5)
+    probleme = None
+    if p3_crosscheck:
         try:
-            short = {"deces_succesiune": "deces", "imputernicire": "imputernicire"}.get(
-                s.flux, "divort" if "divort" in (s.scenariu or "") else "casatorie")
-            v = p3_crosscheck(s.docs, short)
-            for q in getattr(v, "probleme", []):
-                sev = getattr(getattr(q, "severitate", None), "value", "atentie")
-                probleme.append({"severitate": sev, "cod": q.cod, "mesaj": q.mesaj})
+            probleme = _p3_probleme(p3_crosscheck(s.docs, _flux_p3(s)))
         except Exception as e:
-            print(f"  [P3 eroare, folosesc verificările simple] {e}")
+            print(f"  [P3 crosscheck eroare, folosesc verificarile simple] {e}")
+    if probleme is None:
+        probleme = [q for d in s.docs for q in _check_one_simplu(d)] + crosscheck(s.flux, s.docs)
     lipsa = [x["nume"] for x in lista if x["status"] == "lipsa"]
     if lipsa:
         status = "lipseste"
-    elif any(q["severitate"] == "eroare" for q in probleme):
+    elif any(q["severitate"] in ("eroare", "atentie") for q in probleme):
         status = "de_verificat"
     else:
         status = "gata"
-    s.verdict = {"status": status, "acte": lista, "acte_lipsa": lipsa, "probleme": probleme}
+    s.verdict = {"status": status, "acte": lista, "acte_lipsa": lipsa, "probleme": probleme,
+                 "verificari": "P3" if p3_crosscheck else "simple"}
     return s.verdict
 
 

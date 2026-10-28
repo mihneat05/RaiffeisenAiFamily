@@ -100,6 +100,8 @@ def find_expected(expected: dict, rel: str) -> dict | None:
 
 
 def main():
+    if hasattr(sys.stdout, "reconfigure"):   # diacritice OK si cand scriem in fisier (Windows)
+        sys.stdout.reconfigure(encoding="utf-8")
     root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).parent / "date_test"
     if not root.is_dir():
         sys.exit(f"Nu exista folderul {root}")
